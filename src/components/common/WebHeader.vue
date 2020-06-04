@@ -1,0 +1,30 @@
+<template>
+    <div class="webHeaderBox">
+        <div class="webHeader">
+            淘流推
+        </div>
+    </div>
+</template>
+
+<script>
+export default {
+    name:"WebHeader",
+}
+</script>
+
+<style lang="scss" scoped>
+    .webHeaderBox{
+        width: 100%;
+        height: 102px;
+        background: #3399ff;
+        .webHeader{
+            width: 1400px;
+            height: 102px;
+            margin: auto;
+            font-size: 36px;
+            color: #fff;
+            line-height: 102px;
+        }
+    }
+
+</style>
