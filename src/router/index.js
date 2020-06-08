@@ -126,7 +126,40 @@ Vue.use(VueRouter)
           name: 'PublicPhone',
           component: () => import('../views/Admin/Call/PublicPhone.vue')
         },
-
+        //商家部分从这里开始
+        {                    //商铺列表
+          path: 'Shops',
+          name: 'Shops',
+          component: () => import('../views/Admin/Shops/Shops.vue')
+        },
+        {                    //商品列表
+          path: 'GoodList',
+          name: 'GoodList',
+          component: () => import('../views/Admin/Shops/GoodList.vue')
+        },
+        // 申诉部分 开始
+        {                    //申诉列表
+          path: 'Appeal',
+          name: 'Appeal',
+          component: () => import('../views/Admin/Appeal/Appeal.vue')
+        },
+        // 发票部分
+        {                    //发票列表
+          path: 'Invoice',
+          name: 'Invoice',
+          component: () => import('../views/Admin/Invoice/Invoice.vue')
+        },
+        // 充值部分
+        {                    //充值列表
+          path: 'RechargeList',
+          name: 'RechargeList',
+          component: () => import('../views/Admin/Recharge/RechargeList.vue')
+        },
+        {                    //充值概括
+          path: 'RechargeAll',
+          name: 'RechargeAll',
+          component: () => import('../views/Admin/Recharge/RechargeAll.vue')
+        },
       ]
     },
    

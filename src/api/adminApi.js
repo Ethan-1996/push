@@ -364,3 +364,152 @@ export function editCalledResult(data,info) {
     headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
   })
 }
+
+
+const getBusinessListUrl= Header + '/admin/Business/getBusinessList'; // 获取商家列表 
+export function getBusinessList(data,info) {
+  return request({
+    params:data,
+    url: getBusinessListUrl,
+    method: 'get',
+    headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
+  })
+}
+
+const startBusinessUrl= Header + '/admin/Business/startBusiness'; // 启用商家
+export function startBusiness(data,info) {
+  return request({
+    params:data,
+    url: startBusinessUrl,
+    method: 'get',
+    headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
+  })
+}
+
+
+const stopBusinessUrl= Header + '/admin/Business/stopBusiness'; // 禁用商家
+export function stopBusiness(data,info) {
+  return request({
+    params:data,
+    url: stopBusinessUrl,
+    method: 'get',
+    headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
+  })
+}
+
+
+const getGoodsListUrl= Header + '/admin/Goods/getGoodsList'; // 获取 商品列表
+export function getGoodsList(data,info) {
+  return request({
+    data:data,
+    url: getGoodsListUrl,
+    method: 'post',
+    headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
+  })
+}
+
+const editLowerUrl= Header + '/admin/Goods/editLower'; // 下架商品
+export function editLower(data,info) {
+  return request({
+    params:data,
+    url: editLowerUrl,
+    method: 'get',
+    headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
+  })
+}
+
+
+const editDeleteUrl= Header + '/admin/Goods/editDelete'; // 删除商品
+export function editDelete(data,info) {
+  return request({
+    params:data,
+    url: editDeleteUrl,
+    method: 'get',
+    headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
+  })
+}
+
+
+const getAppealListUrl= Header + '/admin/Appeal/getAppealList'; // 获取申诉列表
+export function getAppealList(data,info) {
+  return request({
+    params:data,
+    url: getAppealListUrl,
+    method: 'get',
+    headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
+  })
+}
+
+
+const appealAdoptUrl= Header + '/admin/Appeal/appealAdopt'; // 申诉通过
+export function appealAdopt(data,info) {
+  return request({
+    params:data,
+    url: appealAdoptUrl,
+    method: 'get',
+    headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
+  })
+}
+
+
+const appealFailUrl= Header + '/admin/Appeal/appealFail'; // 申诉不通过
+export function appealFail(data,info) {
+  return request({
+    params:data,
+    url: appealFailUrl,
+    method: 'get',
+    headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
+  })
+}
+
+
+const getInvoiceListAdUrl= Header + '/admin/Invoice/getInvoiceListAd'; // 获取发票列表
+export function getInvoiceListAd(data,info) {
+  return request({
+    params:data,
+    url: getInvoiceListAdUrl,
+    method: 'get',
+    headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
+  })
+}
+
+const handleInvoiceUrl= Header + '/admin/Invoice/handleInvoice'; // 开具发票
+export function handleInvoice(data,info) {
+  return request({
+    params:data,
+    url: handleInvoiceUrl,
+    method: 'get',
+    headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
+  })
+}
+
+const mailInvoiceUrl= Header + '/admin/Invoice/mailInvoice'; // 邮寄发票
+export function mailInvoice(data,info) {
+  return request({
+    data:data,
+    url: mailInvoiceUrl,
+    method: 'post',
+    headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
+  })
+}
+
+const getOrderListAdUrl= Header + '/admin/Order/getOrderListAd'; // 获取充值列表
+export function getOrderListAd(data,info) {
+  return request({
+    params:data,
+    url: getOrderListAdUrl,
+    method: 'get',
+    headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
+  })
+}
+
+
+const surveyMonthUrl= Header + '/admin/Order/surveyMonth'; // 充值数据 按照月份展示
+export function surveyMonth(data,info) {
+  return request({
+    params:data,
+    url: surveyMonthUrl,
+    method: 'get',
+    headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
+  })
+}

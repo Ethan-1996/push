@@ -142,6 +142,63 @@ export default {
             },
           ]
         },
+        {
+          icon: "el-icon-s-open",
+          index: "/Admin/Shops",
+          title: "商家",
+          subs: [
+            
+            {
+              index: "/Admin/Shops",
+              title: "商家列表"
+            },
+            {
+              index: "/Admin/GoodList",
+              title: "商品列表"
+            },
+          ]
+        },
+         {
+          icon: "el-icon-s-open",
+          index: "/Admin/Appeal",
+          title: "申诉",
+          subs: [
+            
+            {
+              index: "/Admin/Appeal",
+              title: "申诉列表"
+            },
+           
+          ]
+        },
+        {
+          icon: "el-icon-s-open",
+          index: "/Admin/Invoice",
+          title: "发票管理",
+          subs: [
+            
+            {
+              index: "/Admin/Invoice",
+              title: "发票列表"
+            },
+          ]
+        },
+         {
+          icon: "el-icon-s-open",
+          index: "/Admin/RechargeList",
+          title: "充值管理",
+          subs: [
+            
+            {
+              index: "/Admin/RechargeList",
+              title: "充值列表"
+            },
+            {
+              index: "/Admin/RechargeAll",
+              title: "充值概括"
+            },
+          ]
+        },
         // {
         //   icon: "el-icon-date",
         //   index: "3",
