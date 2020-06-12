@@ -62,7 +62,7 @@ export default {
             sessionStorage.removeItem('accessTokenAdmin')
             sessionStorage.removeItem('user_idAdmin')
             sessionStorage.removeItem('phoneAdmin')
-            this.reload()
+            this.topath('/AdminLogin')
         },
         topath(path){
             this.$router.push(path)

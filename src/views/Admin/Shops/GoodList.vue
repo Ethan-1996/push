@@ -9,13 +9,16 @@
                 <el-link @click="getGoodsList(3,1)" :underline="false" :type="noType">无效商品</el-link>
             </div>
             <div class="search">
-                <el-autocomplete
+                <!-- <el-autocomplete
                     v-model="searchInfo"
                     :fetch-suggestions="querySearchAsync"
                     placeholder="请输入内容"
                     @select="handleSelect"
                     suffix-icon="el-icon-search"
-                ></el-autocomplete>
+                ></el-autocomplete> -->
+                <el-input placeholder="请输入店铺名/标题" v-model="searchInfo" size="small" style="margin-top:10px">
+                    <el-button slot="append" icon="el-icon-search" @click="search"></el-button>
+                </el-input>
             </div>
         </div>
 
@@ -25,7 +28,7 @@
 
         <!-- 分页部分 -->
         <div class="blank"></div>
-        <div class="page">
+        <div class="page" v-if="pageShow">
             <el-pagination
                  background 
                 :page-size="10"
@@ -35,10 +38,13 @@
                 :total="total">
             </el-pagination>
         </div>
+
+        
     </div>
 </template>
 
 <script>
+
 import {getGoodsList} from '@/api/adminApi.js'
 import getAdminInfo from '@/utils/getAdminInfo.js';
 import List from '@/components/Admin/Shops/GoodsList.vue'
@@ -71,9 +77,28 @@ export default {
             // fuNum:"0",
             // noNum:"0",
             searchInfo:"",   //搜索框内容
+            pageShow:true,
+            
         }
     },
     methods:{
+        search(){
+             let type = 0               // 判断是什么类型的商品
+            if(this.inlineType == "primary"){
+                type = 2
+            }
+            if(this.fuType == "primary"){
+                type = 1
+            }
+            if(this.noType == "primary"){
+                type = 3
+            }
+            this.getGoodsList(type,1,this.searchInfo)
+            this.pageShow = false
+            this.$nextTick(()=> {
+                this.pageShow = true
+            })
+        },
         // getStateNum(){    //获取 各个状态 数量的 函数 传给子组件 
         //     getStateNum(this.info).then(res => {
         //         console.log(res,"whwhwhwhhwhwhwhwhwh")
@@ -125,12 +150,7 @@ export default {
             })
 
         },
-        querySearchAsync(queryString, cb) {   //搜索的函数 
-            console.log(queryString,cb);
-        },
-        handleSelect(item) {     //搜索的函数 
-            console.log(item);
-        },
+        
         handleCurrentChange(val) {    //切换 页码的函数
             let type = 0               // 判断是什么类型的商品
             if(this.inlineType == "primary"){
@@ -142,7 +162,7 @@ export default {
             if(this.noType == "primary"){
                 type = 3
             }
-            this.getGoodsList(type,val)
+            this.getGoodsList(type,val,this.searchInfo)
         }
     }
 
@@ -155,16 +175,16 @@ export default {
             margin-left: 30px;
             line-height: 50px;
         }
-        .el-input__inner{
-            width: 320px;
-            height: 30px;
-            border: none;
-            line-height: 30px;
-            margin-top: 10px;
-        }
-        .el-input__suffix{
-            top: 5px;
-        }
+        // .el-input__inner{
+        //     width: 320px;
+        //     height: 30px;
+        //     border: none;
+        //     line-height: 30px;
+        //     margin-top: 10px;
+        // }
+        // .el-input__suffix{
+        //     top: 5px;
+        // }
     }   
 </style>
 
@@ -182,7 +202,7 @@ export default {
         .goodsState{
             height: 60px;
             width: 1140px;
-            background: #eee;
+            background: #f8f8f8;
             margin:10px auto 20px;
             display: flex;
             justify-content: space-between;

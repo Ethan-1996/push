@@ -16,16 +16,16 @@
                     <span>{{formLabelAlign.invited_url}}</span>
                 </el-form-item>
                 <el-form-item label="剩余积分：">
-                    <span>{{formLabelAlign.integral}}</span><el-button @click="showFlag = !showFlag" size="small" style="margin-left:40px">获得积分</el-button>
+                    <span>{{formLabelAlign.integral}}</span><el-button @click="toNew" size="small" style="margin-left:40px">获得积分</el-button>
                 </el-form-item>
-                <div v-if="showFlag">
+                <!-- <div v-if="showFlag">
                     <el-form-item label="充值：">
                         <el-radio v-for="(value,key,index) in moneyList" :key="index" v-model="radio" :label="key">{{value.order_amount}} + {{value.order_give}}(赠送)</el-radio>
                     </el-form-item>
                     <el-form-item label="">
                         <el-button @click="toNewPage" :disabled="this.radio==''?true:false">去支付</el-button>
                     </el-form-item>
-                </div>
+                </div> -->
               
 
             </el-form>
@@ -75,6 +75,9 @@ export default {
         })
     },
     methods:{
+        toNew(){
+            this.$router.push("/Recharge")
+        },
         toNewPage(){
             
                 window.open (`${this.$header}/index/Payment/getCode?tp=${this.radio}&userid=${this.info.user_id}`, "newwindow", "height=800px, width=1200px, top=100px, left=400px, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no") 

@@ -76,7 +76,7 @@ export default {
     return {
       items: [
         {
-          icon: "el-icon-s-open",
+          icon: "el-icon-cpu",
           index: "/Admin/AdminList",
           title: "管理员设置",
           subs: [
@@ -84,6 +84,24 @@ export default {
               index: "/Admin/AdminList",
               title: "管理员列表",
               
+            },
+            {
+              index: "/Admin/PerformanceOverview",
+              title: "业绩总览",
+              children: [
+                {
+                  index: "/Admin/PerformanceOverview/ShopRegister",
+                  title: "商家注册概况"
+                },
+                {
+                  index: "/Admin/PerformanceOverview/ShopBelong",
+                  title: "商家所属概况"
+                },
+                {
+                  index: "/Admin/PerformanceOverview/Investment",
+                  title: "招商业绩"
+                }
+              ]
             },
             {
               index: "/Admin/AdminSetRights",
@@ -97,7 +115,7 @@ export default {
           ]
         },
         {
-          icon: "el-icon-s-open",
+          icon: "el-icon-mobile-phone",
           index: "/Admin/PublicPhone",
           title: "呼叫中心",
           subs: [
@@ -143,7 +161,7 @@ export default {
           ]
         },
         {
-          icon: "el-icon-s-open",
+          icon: "el-icon-data-board",
           index: "/Admin/Shops",
           title: "商家",
           subs: [
@@ -156,10 +174,14 @@ export default {
               index: "/Admin/GoodList",
               title: "商品列表"
             },
+            {
+              index: "/Admin/Effect",
+              title: "商家效果展示"
+            },
           ]
         },
          {
-          icon: "el-icon-s-open",
+          icon: "el-icon-news",
           index: "/Admin/Appeal",
           title: "申诉",
           subs: [
@@ -172,7 +194,7 @@ export default {
           ]
         },
         {
-          icon: "el-icon-s-open",
+          icon: "el-icon-tickets",
           index: "/Admin/Invoice",
           title: "发票管理",
           subs: [
@@ -184,7 +206,7 @@ export default {
           ]
         },
          {
-          icon: "el-icon-s-open",
+          icon: "el-icon-wallet",
           index: "/Admin/RechargeList",
           title: "充值管理",
           subs: [
@@ -196,6 +218,30 @@ export default {
             {
               index: "/Admin/RechargeAll",
               title: "充值概括"
+            },
+          ]
+        },
+        {
+          icon: "el-icon-user",
+          index: "/Admin/Mine",
+          title: "我的",
+          subs: [
+            
+            {
+              index: "/Admin/Mine",
+              title: "我的信息"
+            },
+            {
+              index: "/Admin/Client",
+              title: "我的客户"
+            },
+            {
+              index: "/Admin/ClientBelong",
+              title: "客户归属"
+            },
+            {
+              index: "/Admin/Achievement",
+              title: "业绩"
             },
           ]
         },
@@ -230,5 +276,6 @@ export default {
   border-radius: 10px 0 0 10px;
   overflow: hidden;
   margin-right: 20px;
+  padding-bottom:10px;
 }
 </style>

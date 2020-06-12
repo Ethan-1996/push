@@ -80,20 +80,32 @@
     </el-table-column>
     <el-table-column label="操作" width="110">
       <template slot-scope="scope">
-        <el-link type="primary" @click="toMore(scope.row.id)">查看</el-link><br/>
+        <el-link type="primary" @click="dialogVisible = true;getSingleGoods(scope.row.id,scope.row.user_id)">查看</el-link><br/>
         <el-link type="primary" @click="editLower(scope.row.id,scope.row.user_id)" v-if="scope.row.upper_lower == 1">下架</el-link>
         <el-link type="primary" v-else >已下架</el-link><br/>
         <el-link type="primary" @click="editDelete(scope.row.id,scope.row.user_id)">删除</el-link><br/>      
       </template>
       </el-table-column>
   </el-table>
+
+  <el-dialog :title="text" :visible.sync="dialogVisible" width="80%">
+      <Echart :xAxisData="xAxisData" :yAxisData="yAxisData" :yAxisData2="yAxisData2" />
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+      </span>
+    </el-dialog>
 </div>
 </template>
 
 <script>
-  import {editDelete,editLower} from '@/api/adminApi.js'
+import Echart from "@/components/Admin/Shops/ShopEchart.vue";
+  import {editDelete,editLower,getSingleGoods,getCoupon} from '@/api/adminApi.js'
   export default {
       name:"List",
+      components:{
+        Echart
+    },
       // inject:['reload'],    //引入 app中 刷新方法
       props:["listInfo","info"],
       watch:{
@@ -106,14 +118,56 @@
       },
       data(){
         return {
-          checkFlag:true
+          checkFlag:true,
+          dialogVisible: false,
+            yAxisData: [],
+            yAxisData2: [],
+            xAxisData: [],
+            text:"效果展示"
         }
       },
       
     methods: {
-      toMore(id){
-        this.$router.push({path:"/Show",query:{id}})
-      },
+      format(info) {
+      this.xAxisData = [];
+      this.yAxisData = [];
+      for (let key in info) {
+        this.xAxisData.push(key);
+        this.yAxisData.push(info[key]);
+      }
+    },
+      // 可视化图标请求数据
+    getSingleGoods(id,user_id) {
+      //type 1 是按照销量计算
+      getSingleGoods({ id,user_id, type: 1 }, this.info).then(res => {
+        if (res.data.code == 200) {
+          console.log(res.data.data.sales_volume.day);
+          this.format(res.data.data.sales_volume.day);
+        } else {
+          this.$message({
+            showClose: true,
+            message: res.data.msg,
+            type: "error"
+          });
+        }
+      });
+
+      //type 2 是按照领券量计算
+      getSingleGoods({ id,user_id, type: 2 }, this.info).then(res => {
+        if (res.data.code == 200) {
+          this.yAxisData2 = []
+          for (let key in res.data.data.sales_volume.day) {
+            this.yAxisData2.push(res.data.data.sales_volume.day[key]);
+          }
+        } else {
+          this.$message({
+            showClose: true,
+            message: res.data.msg,
+            type: "error"
+          });
+        }
+      });
+    },
       checknum(id,coupon_activity_id){      //查看领取 优惠卷数量
         let data = {
           id,

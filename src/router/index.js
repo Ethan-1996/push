@@ -56,6 +56,12 @@ Vue.use(VueRouter)
       name: 'Show',
       component: () => import('../views/Show/Show.vue')
     },
+    {                    //充值中心
+      path: '/Recharge',
+      name: 'Recharge',
+      component: () => import('../views/Recharge/Recharge.vue')
+    },
+
     {                    //管理员登陆
       path: '/AdminLogin',
       name: '/AdminLogin',
@@ -105,6 +111,24 @@ Vue.use(VueRouter)
           name: 'AdminSetRights',
           component: () => import('../views/Admin/AdminSetting/AdminSetRights.vue')
         },
+        {                    //管理员设置  业绩 总览  商家注册概况
+          path: 'PerformanceOverview/ShopRegister',
+          name: 'PerformanceOverview/ShopRegister',
+          component: () => import('../views/Admin/AdminSetting/PerformanceOverview/ShopRegister.vue')
+        },
+        {                    //管理员设置  业绩 总览  商家所属概况
+          path: 'PerformanceOverview/ShopBelong',
+          name: 'PerformanceOverview/ShopBelong',
+          component: () => import('../views/Admin/AdminSetting/PerformanceOverview/ShopBelong.vue')
+        },
+
+        {                    //管理员设置  业绩 总览  招商业绩
+          path: 'PerformanceOverview/Investment',
+          name: 'PerformanceOverview/Investment',
+          component: () => import('../views/Admin/AdminSetting/PerformanceOverview/Investment.vue')
+        },
+
+
         // 呼叫中心从这里开始
         // {                    //呼叫中心 上传电话 表格
         //   path: 'UploadPhone',
@@ -131,6 +155,11 @@ Vue.use(VueRouter)
           path: 'Shops',
           name: 'Shops',
           component: () => import('../views/Admin/Shops/Shops.vue')
+        },
+        {                    //商铺  效果展示
+          path: 'Effect',
+          name: 'Effect',
+          component: () => import('../views/Admin/Shops/Effect.vue')
         },
         {                    //商品列表
           path: 'GoodList',
@@ -159,6 +188,27 @@ Vue.use(VueRouter)
           path: 'RechargeAll',
           name: 'RechargeAll',
           component: () => import('../views/Admin/Recharge/RechargeAll.vue')
+        },
+        // 我的部分
+        {                    //我的信息
+          path: 'Mine',
+          name: 'Mine',
+          component: () => import('../views/Admin/Mine/Mine.vue')
+        },
+        {                    //我的客户
+          path: 'Client',
+          name: 'Client',
+          component: () => import('../views/Admin/Mine/Client.vue')
+        },
+        {                    //客户归属
+          path: 'ClientBelong',
+          name: 'ClientBelong',
+          component: () => import('../views/Admin/Mine/ClientBelong.vue')
+        },
+        {                    //业绩
+          path: 'Achievement',
+          name: 'Achievement',
+          component: () => import('../views/Admin/Mine/Achievement.vue')
         },
       ]
     },

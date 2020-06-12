@@ -32,7 +32,7 @@
                     },
                     xAxis: [
                         {
-                            name:'月份',
+                            name:this.type,
                             type: 'category',
                             data: this.xAxisData,
                             axisTick: {
@@ -54,9 +54,20 @@
                     series: [
                         {
                             name: "收入金额",
-                            type: 'line',
+                            type: 'bar',
+                            barWidth: '60px',
                             data: this.yAxisData,
+                            itemStyle: {
+                                normal: {
+                                    color: function(params) {          //设置颜色   
+                                        var colorList = ["#3399cc","#99cc99","#ffff99","#ffcc99","#cc3366", '#ffb400','#00ff4e','#ff0000','#00ddff','#baff00',
+                           '#00ff06']
+                                        return colorList[params.dataIndex] 
+                                    },
+                                },
+                            },
                         },
+                        
                         // {
                         //     name: "按领券量成交额",
                         //     type: 'line',
@@ -76,7 +87,7 @@
 </script>
 <style lang="scss" scoped>
     #main{
-        width: 900px;
+        width: 1000px;
         height: 480px;
         margin: 40px auto;
         // position: relative;

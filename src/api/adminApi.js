@@ -236,6 +236,93 @@ export function disableAdmin(data,info) {
   })
 }
 
+  // 从这里开始 是 管理员设置 业绩总览 的接口 
+const bnRegistMonthNumUrl= Header + '/admin/Admin/bnRegistMonthNum'; //获取本月数据
+export function bnRegistMonthNum(info) {
+  return request({
+    url: bnRegistMonthNumUrl,
+    method: 'get',
+    headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
+  })
+}
+
+
+const bnRegistMonthNumHtUrl= Header + '/admin/Admin/bnRegistMonthNumHt'; //获取月数据  全年
+export function bnRegistMonthNumHt(data,info) {
+  return request({
+    params:data,
+    url: bnRegistMonthNumHtUrl,
+    method: 'get',
+    headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
+  })
+}
+
+const bnRegistYearNumHtUrl= Header + '/admin/Admin/bnRegistYearNumHt'; //获取年数据
+export function bnRegistYearNumHt(data,info) {
+  return request({
+    params:data,
+    url: bnRegistYearNumHtUrl,
+    method: 'get',
+    headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
+  })
+}
+
+const getAllStateAdminsUrl= Header + '/admin/Admin/getAllStateAdmins'; //商家所属列表搜索
+export function getAllStateAdmins(data,info) {
+  return request({
+    params:data,
+    url: getAllStateAdminsUrl,
+    method: 'get',
+    headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
+  })
+}
+
+const bnRegistMonthNumHtOfAdUrl= Header + '/admin/Admin/bnRegistMonthNumHtOfAd'; //按照月份 
+export function bnRegistMonthNumHtOfAd(data,info) {
+  return request({
+    params:data,
+    url: bnRegistMonthNumHtOfAdUrl,
+    method: 'get',
+    headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
+  })
+}
+const bnRegistYearNumHtOfAdUrl= Header + '/admin/Admin/bnRegistYearNumHtOfAd'; //按照年份 
+export function bnRegistYearNumHtOfAd(data,info) {
+  return request({
+    params:data,
+    url: bnRegistYearNumHtOfAdUrl,
+    method: 'get',
+    headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
+  })
+}
+
+
+const achieveMentMonthAdminUrl= Header + '/admin/Admin/achieveMentMonth'; // 获取 管理员当月业绩
+export function achieveMentMonthAdmin(data,info) {
+  return request({
+    params:data,
+    url: achieveMentMonthAdminUrl,
+    method: 'get',
+    headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
+  })
+}
+
+const achieveMentMonthHtUrl= Header + '/admin/Admin/achieveMentMonthHt'; // 获取 管理员年业绩
+export function achieveMentMonthHt(data,info) {
+  return request({
+    params:data,
+    url: achieveMentMonthHtUrl,
+    method: 'get',
+    headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
+  })
+}
+
+
+
+
+
+
+
 
 const getAdminAllRoleTreeUrl= Header + '/admin/Admin/getAllRoleTree'; //获取权限
 export function getAdminAllRoleTree(info) {
@@ -398,21 +485,67 @@ export function stopBusiness(data,info) {
 }
 
 
-const getGoodsListUrl= Header + '/admin/Goods/getGoodsList'; // 获取 商品列表
-export function getGoodsList(data,info) {
+const businessEffectUrl= Header + '/admin/Business/businessEffect'; // 获取商家效果展示数据 
+export function businessEffect(data,info) {
   return request({
-    data:data,
-    url: getGoodsListUrl,
-    method: 'post',
+    params:data,
+    url: businessEffectUrl,
+    method: 'get',
     headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
   })
 }
+
+
+const getBusinessAllUrl= Header + '/admin/Business/getBusinessAll'; // 搜索商家 
+export function getBusinessAll(data,info) {
+  return request({
+    params:data,
+    url: getBusinessAllUrl,
+    method: 'get',
+    headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
+  })
+}
+
+
+
+const getGoodsListUrl= Header + '/admin/Goods/getGoodsList'; // 获取 商品列表
+export function getGoodsList(data,info) {
+  return request({
+    params:data,
+    url: getGoodsListUrl,
+    method: 'get',
+    headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
+  })
+}
+
+
+const getSingleGoodsUrl= Header + '/admin/Goods/getSingleGoods'; // 获取 商品 查看 可视化图表信息
+export function getSingleGoods(data,info) {
+  return request({
+    params:data,
+    url: getSingleGoodsUrl,
+    method: 'get',
+    headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
+  })
+}
+
+
 
 const editLowerUrl= Header + '/admin/Goods/editLower'; // 下架商品
 export function editLower(data,info) {
   return request({
     params:data,
     url: editLowerUrl,
+    method: 'get',
+    headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
+  })
+}
+
+const getCouponUrl= Header + '/admin/Goods/getCoupon'; // 查看领券量
+export function getCoupon(data,info) {
+  return request({
+    params:data,
+    url: getCouponUrl,
     method: 'get',
     headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
   })
@@ -509,6 +642,71 @@ export function surveyMonth(data,info) {
   return request({
     params:data,
     url: surveyMonthUrl,
+    method: 'get',
+    headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
+  })
+}
+
+
+const surveyYearUrl= Header + '/admin/Order/surveyYear'; // 充值数据 按照年份展示
+export function surveyYear(data,info) {
+  return request({
+    params:data,
+    url: surveyYearUrl,
+    method: 'get',
+    headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
+  })
+}
+
+
+// wode 
+
+const getAccountInfoUrl= Header + '/admin/Center/getAccountInfo'; // 我的信息
+export function getAccountInfo(info) {
+  return request({
+    url: getAccountInfoUrl,
+    method: 'get',
+    headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
+  })
+}
+
+
+const myCustomerUrl= Header + '/admin/Center/myCustomer'; // 我的客户
+export function myCustomer(data,info) {
+  return request({
+    params:data,
+    url: myCustomerUrl,
+    method: 'get',
+    headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
+  })
+}
+
+
+const customerSourceUrl= Header + '/admin/Center/customerSource'; // 客户归属
+export function customerSource(data,info) {
+  return request({
+    params:data,
+    url: customerSourceUrl,
+    method: 'get',
+    headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
+  })
+}
+
+
+const achieveMentMonthUrl= Header + '/admin/Center/achieveMentMonth'; // 本月业绩
+export function achieveMentMonth(info) {
+  return request({
+    url: achieveMentMonthUrl,
+    method: 'get',
+    headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
+  })
+}
+
+const achieveMentHistoryUrl= Header + '/admin/Center/achieveMentHistory'; // 历史业绩
+export function achieveMentHistory(data,info) {
+  return request({
+    params:data,
+    url: achieveMentHistoryUrl,
     method: 'get',
     headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
   })

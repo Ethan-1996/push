@@ -23,7 +23,7 @@
                         :on-success="handleSuccess"
                         :data="ruleForm">
                         <i class="el-icon-plus"></i>
-                        <div slot="tip" class="el-upload__tip">请上传淘宝店铺截图！</div>
+                        <div slot="tip" class="el-upload__tip">请上传淘宝店铺后台截图！</div>
                         </el-upload>
                         <el-dialog :visible.sync="dialogVisible">
                         <img width="100%" :src="dialogImageUrl" alt="">

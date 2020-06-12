@@ -33,6 +33,11 @@
                             <i class="el-icon-set-up"></i>
                             个人中心
                         </el-menu-item>
+                        <el-menu-item index="/Recharge">
+                            <i class="el-icon-set-up"></i>
+                            充值
+                        </el-menu-item>
+
                         <el-menu-item index="/MoneyList">
                             <i class="el-icon-set-up"></i>
                             充值记录

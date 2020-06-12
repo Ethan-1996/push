@@ -113,6 +113,9 @@ export default {
     created(){
 
       getAdminInfo(this.info)
+      if(!this.info){
+          return false
+      }
         this.getAdminList(1)
     },
     methods:{
