@@ -1,31 +1,33 @@
 <template>
   <div class="program">
       <div class="programItem" v-for="(item,index) in extensionInfo" :key="index" >
-          <!-- <div class="iteminfo">
-                <p class="text">原价：
-                    <el-tooltip class="item" effect="dark" :content="item.coupon" placement="top">
-                        <span>{{item.coupon}}</span>
-                    </el-tooltip>
-                </p>
-          </div> -->
-          <div class="iteminfo">
-                <p class="text">券后价：
-                    <span>{{item.coupon}} 元</span>
-                </p>
+          <div class="title">
+              <p :style="'color:' + item.icon"></p>
+              <p class="word">{{item.icon}}</p>
           </div>
-
-          <div class="iteminfo">
-              <p class="text">佣金：<span style="color:red">{{item.commission}}</span></p>
+          <div class="item itemMoney">
+              <p class="itemTop">
+                  {{item.coupon}} <span>元</span>
+              </p>
+              <p class="name">券后价</p>
           </div>
-          <div class="iteminfo">
-              <p class="text">日销量：<span>日销{{item.sale}}单</span></p>
+          <div class="item itemCom">
+              <p class="itemTop">
+                  {{item.commission}} <span>%</span>
+              </p>
+              <p class="name">佣金</p>
           </div>
-          <div class="iteminfo">
-              <p class="text">日成交金额：<span>{{item.daily_turnover}}元</span></p>
+          <div class="item itemMany">
+              <p class="itemTop">
+                  {{item.sale}} <span>件</span>
+              </p>
+              <p class="name">日销量</p>
           </div>
-          <div class="topLeft">
-              <i :class="item.icon"></i>
-              <span>方案{{index + 1}}</span>
+          <div class="item itemDayMany">
+              <p class="itemTop">
+                  {{item.daily_turnover}} <span>元</span>
+              </p>
+              <p class="name">日成交金额</p>
           </div>
       </div>
   </div>
@@ -48,53 +50,62 @@ export default {
     .program{
         width: 1010px;
         margin: auto;
-        display: flex;
-        justify-content: space-around;
-        margin-top: 70px;
+        margin: 60px auto;
         .programItem{
-            width:220px;
-            height: 150px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            position:relative;
-            .topLeft{
-                width:90px;
-                height:28px;
-                border:1px solid #ccc;
-                border-radius:15px;
-                position:absolute;
-                top:-10px;
-                left:-10px;
-                background:#fff;
-                line-height:28px;
-                text-align:center;
-                span{
-                    margin-left:5px;
+            width: 1000px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-top: 20px;
+            margin-bottom: 45px;
+            .title{
+                font-size: 14px;
+                line-height: 18px;
+                color: rgb(17, 17, 17);
+                display: flex;
+                position: absolute;
+                top: -26px;
+                p:nth-of-type(1){
+                    width:6px;
+                    height:17px;
+                    background:rgba(1,142,237,1);
+                    margin-right: 10px;
                 }
             }
-            .iteminfo{
-                width: 178px;
-                height: 20px;
-                border: 1px solid #8eeaff;
-                margin: auto;
-                margin-top: 5px;
-                .text{
-                    width: 174px;
-                    height: 16px;
-                    line-height: 16px;
-                    margin: 2px;
-                    background: #ccffff;
-                    color: #6fc9e4;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    white-space: nowrap;
+            .item{
+                width:220px;
+                height:70px;
+                background:rgba(137,170,244,1);
+                border-radius:8px;
+                padding: 5px;
+                color: #fff;
+                .itemTop{
+                    font-size: 30px;
+                    font-weight: 800;
                     span{
-                        color:#999
+                        font-size: 14px;
+                        font-weight: normal;
                     }
+                    margin: 12px 0 0 35px;
+                }
+                .name{
+                    font-size: 14px;
+                    margin-top: 8px;
+                    margin-left: 120px;
                 }
             }
-            .iteminfo:nth-of-type(1){
-                margin-top: 28px;
+            .itemMoney{
+                background: url("../../assets/images/itembg1.jpg");
+            }
+            .itemCom{
+                background: url("../../assets/images/itembg2.jpg");
+            }
+            .itemMany{
+                background: url("../../assets/images/itembg3.jpg");
+            }
+            .itemDayMany{
+                background: url("../../assets/images/itembg4.jpg");
             }
         }
     }

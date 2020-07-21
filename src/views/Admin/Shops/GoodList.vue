@@ -141,10 +141,15 @@ export default {
                 //循环添加一个 查看数量flag
                 
                 for(let i = 0;i < this.listInfo.length;i++){
-
+                    let element = []
                     //$set 触发试图更新
                     this.$set(this.listInfo[i],"checkNumFlag",true);
-                }
+                   
+                    for (let index = 0; index < this.listInfo[i].state_to_platform_web.length; index++) {
+                        element.push(this.listInfo[i].state_to_platform_web[index].id) 
+                    }
+                    this.$set(this.listInfo[i],"platformList",element);
+                    element = []                }
                 //console.log(this.listInfo,"infofffffofofofofofofofofofo")
                 this.total = res.data.data.total
             })
@@ -174,6 +179,7 @@ export default {
         .el-link--inner{
             margin-left: 30px;
             line-height: 50px;
+            margin-top: 0px;
         }
         // .el-input__inner{
         //     width: 320px;

@@ -711,3 +711,93 @@ export function achieveMentHistory(data,info) {
     headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
   })
 }
+
+
+
+// 平台管理
+const addPlatformUrl= Header + '/admin/Platform/addPlatform'; // 添加平台类型
+export function addPlatform(data,info) {
+  return request({
+    data:data,
+    url: addPlatformUrl,
+    method: 'post',
+    headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
+  })
+}
+
+
+const getPlatformUrl= Header + '/admin/Platform/getPlatform'; // 获取平台类型
+export function getPlatform(info) {
+  return request({
+    url: getPlatformUrl,
+    method: 'get',
+    headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
+  })
+}
+
+
+const editPlatformUrl= Header + '/admin/Platform/editPlatform'; // 修改平台类型
+export function editPlatform(data,info) {
+  return request({
+    data:data,
+    url: editPlatformUrl,
+    method: 'post',
+    headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
+  })
+}
+
+
+const deletePlatformUrl= Header + '/admin/Platform/deletePlatform'; // 删除平台类型
+export function deletePlatform(data,info) {
+  return request({
+    params:data,
+    url: deletePlatformUrl,
+    method: 'get',
+    headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
+  })
+}
+
+
+
+
+const addPlatformWebUrl= Header + '/admin/Platformweb/addPlatformWeb'; // 添加平台
+export function addPlatformWeb(data,info) {
+  return request({
+    data:data,
+    url: addPlatformWebUrl,
+    method: 'post',
+    headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
+  })
+}
+
+
+const getPlatformWebUrl= Header + '/admin/Platformweb/getPlatformWeb'; // 获取平台
+export function getPlatformWeb(info) {
+  return request({
+    url: getPlatformWebUrl,
+    method: 'get',
+    headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
+  })
+}
+
+
+const editPlatformWebUrl= Header + '/admin/Platformweb/editPlatformWeb'; // 修改平台
+export function editPlatformWeb(data,info) {
+  return request({
+    data:data,
+    url: editPlatformWebUrl,
+    method: 'post',
+    headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
+  })
+}
+
+
+const deletePlatformWebUrl= Header + '/admin/Platformweb/deletePlatformWeb'; // 删除平台
+export function deletePlatformWeb(data,info) {
+  return request({
+    params:data,
+    url: deletePlatformWebUrl,
+    method: 'get',
+    headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
+  })
+}

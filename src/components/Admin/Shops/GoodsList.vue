@@ -38,14 +38,14 @@
     </el-table-column>
     <el-table-column
       label="券后价"
-      width="110">
+      >
       <template slot-scope="scope">
         <span style="text-align:center">{{scope.row.post_coupon_price}}</span>
       </template>
     </el-table-column>
     <el-table-column
       label="佣金"
-      width="110">
+      >
       <template slot-scope="scope">
         <span>{{scope.row.commission}}%</span>
       </template>
@@ -71,16 +71,27 @@
     </el-table-column>
     <el-table-column
       label="状态"
-      width="110">
+      >
       <template slot-scope="scope">
         <span v-show="scope.row.state == 1">预告</span>
         <span v-show="scope.row.state == 2">进行中</span>
         <span v-show="scope.row.state == 3">无效</span>
       </template>
     </el-table-column>
-    <el-table-column label="操作" width="110">
+    <el-table-column
+      label="上传平台"
+      width="90">
+      <template slot-scope="scope">
+         <el-checkbox-group v-model="scope.row.platformList">
+            <el-checkbox v-for="item in platformData" :key="item.id" :label="item.id" disabled style="display:block">{{item.platform}}</el-checkbox>
+          
+        </el-checkbox-group>
+      </template>
+    </el-table-column>
+    <el-table-column label="操作">
       <template slot-scope="scope">
         <el-link type="primary" @click="dialogVisible = true;getSingleGoods(scope.row.id,scope.row.user_id)">查看</el-link><br/>
+        <el-link type="primary" @click="dialogVisible = true;getSingleGoods(scope.row.id,scope.row.user_id)">修改</el-link><br/>
         <el-link type="primary" @click="editLower(scope.row.id,scope.row.user_id)" v-if="scope.row.upper_lower == 1">下架</el-link>
         <el-link type="primary" v-else >已下架</el-link><br/>
         <el-link type="primary" @click="editDelete(scope.row.id,scope.row.user_id)">删除</el-link><br/>      
@@ -100,11 +111,19 @@
 
 <script>
 import Echart from "@/components/Admin/Shops/ShopEchart.vue";
-  import {editDelete,editLower,getSingleGoods,getCoupon} from '@/api/adminApi.js'
+  import {editDelete,editLower,getSingleGoods,getCoupon,getPlatform} from '@/api/adminApi.js'
   export default {
       name:"List",
       components:{
         Echart
+    },
+    created(){
+      getPlatform(this.info).then(res => {
+        console.log(res)
+        if (res.data.code == 200) {
+          this.platformData = res.data.data
+        }
+      })
     },
       // inject:['reload'],    //引入 app中 刷新方法
       props:["listInfo","info"],
@@ -118,6 +137,7 @@ import Echart from "@/components/Admin/Shops/ShopEchart.vue";
       },
       data(){
         return {
+          platformData:[],
           checkFlag:true,
           dialogVisible: false,
             yAxisData: [],

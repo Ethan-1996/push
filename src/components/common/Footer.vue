@@ -1,9 +1,10 @@
 <template>
   <div class="footer">
       <div class="footerTop">
-          <div class="topLeft">
+          <!-- <div class="topLeft">
               <div class="weChatImg">
                   <i class="el-icon-chat-dot-round"></i>
+                  <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=3003233603&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:3003233603:52" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
               </div>
               <div class="inlineHelp">
                   在线客服
@@ -11,6 +12,9 @@
               <div class="helpTime">
                   周一至周日 9:00-18:00
               </div>
+          </div> -->
+          <div class="topLeftImg">
+              <img src="../../assets/images/logoFoot.png" alt="">
           </div>
           <div class="topCenter">
               <ul>
@@ -50,6 +54,10 @@ export default {
             height: 135px;
             border-bottom:1px solid #999;
             display: flex;
+            .topLeftImg{
+                line-height: 135px;
+                margin-left: 40px;
+            }
             .topLeft{
                 margin-left: 64px;
                 width: 141px;

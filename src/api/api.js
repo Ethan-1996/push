@@ -52,6 +52,20 @@ export function goodsIndex(data,info) {
   })
 }
 
+
+const checkCompeteGoodsUrl= Header + '/index/Goods/checkCompeteGoods'; //分析竞品数据
+export function checkCompeteGoods(data,info) {
+  return request({
+    data:data,
+    url: checkCompeteGoodsUrl,
+    method: 'post',
+    headers:{"user-info":info.user_info,"user-id":info.user_id}
+  })
+}
+
+
+
+
 const checkCouponUrl= Header + '/index/Goods/checkCoupon'; //检测优惠券
 export function checkCoupon(data,info) {
   return request({
@@ -61,6 +75,19 @@ export function checkCoupon(data,info) {
     headers:{"user-info":info.user_info,"user-id":info.user_id}
   })
 }
+
+
+const getUploadIntegralUrl= Header + '/index/Goods/getUploadIntegral'; //获取 要扣除的积分 
+export function getUploadIntegral(info) {
+  return request({
+    url: getUploadIntegralUrl,
+    method: 'get',
+    headers:{"user-info":info.user_info,"user-id":info.user_id}
+  })
+}
+
+
+
 
 const saveGoodsCouponUrl= Header + '/index/Goods/saveGoodsCoupon'; //保存商品信息，优惠券信息
 export function saveGoodsCoupon(data,info) {
@@ -129,6 +156,16 @@ export function getSingleGoods(data,info) {
     data:data,
     url: getSingleGoodsUrl,
     method: 'post',
+    headers:{"user-info":info.user_info,"user-id":info.user_id}
+  })
+}
+
+
+const getPlatformUrl= Header + '/index/Platform/getPlatform'; //获取 平台 类型
+export function getPlatform(info) {
+  return request({
+    url: getPlatformUrl,
+    method: 'get',
     headers:{"user-info":info.user_info,"user-id":info.user_id}
   })
 }
@@ -233,6 +270,51 @@ export function receivedInvoice(query,info) {
   return request({
     params:query,
     url: receivedInvoiceUrl,
+    method: 'get',
+    headers:{"user-info":info.user_info,"user-id":info.user_id}
+  })
+}
+
+// 2020.6。30  关注 竞品部分
+const addAttentionUrl= Header + '/index/Attention/addAttention'; //关注  竞品 
+export function addAttention(query,info) {
+  return request({
+    params:query,
+    url: addAttentionUrl,
+    method: 'get',
+    headers:{"user-info":info.user_info,"user-id":info.user_id}
+  })
+}
+
+
+
+const getAttentionUrl= Header + '/index/Attention/getAttention'; //关注 列表
+export function getAttention(query,info) {
+  return request({
+    params:query,
+    url: getAttentionUrl,
+    method: 'get',
+    headers:{"user-info":info.user_info,"user-id":info.user_id}
+  })
+}
+
+
+const cancelAttentionUrl= Header + '/index/Attention/cancelAttention'; // 取消  关注
+export function cancelAttention(query,info) {
+  return request({
+    params:query,
+    url: cancelAttentionUrl,
+    method: 'get',
+    headers:{"user-info":info.user_info,"user-id":info.user_id}
+  })
+}
+
+
+const getAttentionExtensionUrl= Header + '/index/Attention/getAttentionExtension'; // 获取单个 关注竞品的 数据
+export function getAttentionExtension(query,info) {
+  return request({
+    params:query,
+    url: getAttentionExtensionUrl,
     method: 'get',
     headers:{"user-info":info.user_info,"user-id":info.user_id}
   })

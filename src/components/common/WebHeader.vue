@@ -1,7 +1,8 @@
 <template>
     <div class="webHeaderBox">
         <div class="webHeader">
-            淘流推
+            <img src="../../assets/images/logo.png" alt="">
+            <img src="../../assets/images/afterLogo.png" alt="" style="margin-left:20px">
         </div>
     </div>
 </template>
@@ -16,7 +17,7 @@ export default {
     .webHeaderBox{
         width: 100%;
         height: 102px;
-        background: #3399ff;
+        background: url(../../assets/images/logobg.png);
         .webHeader{
             width: 1400px;
             height: 102px;

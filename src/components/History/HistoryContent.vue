@@ -9,23 +9,26 @@
                 <el-link @click="getGoodsList(3,1)" :underline="false" :type="noType">无效商品({{noNum}})</el-link>
             </div>
             <div class="search">
-                <el-autocomplete
+                <!-- <el-autocomplete
                     v-model="searchInfo"
                     :fetch-suggestions="querySearchAsync"
                     placeholder="请输入内容"
                     @select="handleSelect"
                     suffix-icon="el-icon-search"
-                ></el-autocomplete>
+                ></el-autocomplete> -->
+                <el-input placeholder="请输入店铺名/标题" v-model="searchInfo" size="small" style="margin-top:10px">
+                    <el-button slot="append" icon="el-icon-search" @click="search"></el-button>
+                </el-input>
             </div>
         </div>
 
         <!-- 表格部分 -->
 
-        <List :listInfo="listInfo" :info="info" :getStateNum="getStateNum"/>
+        <List :listInfo="listInfo" :info="info" :getStateNum="getStateNum" :platformData="platformData"/>
 
         <!-- 分页部分 -->
         <div class="blank"></div>
-        <div class="page">
+        <div class="page" v-if="pageShow">
             <el-pagination
                  background 
                 :page-size="10"
@@ -39,7 +42,7 @@
 </template>
 
 <script>
-import {getStateNum,getGoodsList} from '@/api/api.js'
+import {getStateNum,getGoodsList,getPlatform} from '@/api/api.js'
 import getInfo from '@/utils/getInfo.js'
 import List from './List'
 export default {
@@ -58,6 +61,19 @@ export default {
             this.getStateNum()
             this.getGoodsList(2,1)
         }
+
+        getPlatform(this.info).then(res => {
+            if (res.data.code == 200) {
+                this.platformData = res.data.data
+            }else{
+                this.$message({
+                    showClose: true,
+                    message: res.data.msg,
+                    type: "error"
+                });
+            }
+        })
+       
     },
     data(){
         return {
@@ -71,9 +87,28 @@ export default {
             fuNum:"0",
             noNum:"0",
             searchInfo:"",   //搜索框内容
+            platformData:[],
+            pageShow:true,
         }
     },
     methods:{
+        search(){
+            let type = 0               // 判断是什么类型的商品
+            if(this.inlineType == "primary"){
+                type = 2
+            }
+            if(this.fuType == "primary"){
+                type = 1
+            }
+            if(this.noType == "primary"){
+                type = 3
+            }
+            this.getGoodsList(type,1,this.searchInfo)
+            this.pageShow = false
+            this.$nextTick(()=> {
+                this.pageShow = true
+            })
+        },
         getStateNum(){    //获取 各个状态 数量的 函数 传给子组件 
             getStateNum(this.info).then(res => {
                 console.log(res,"whwhwhwhhwhwhwhwhwh")
@@ -85,7 +120,7 @@ export default {
             })
 
         },
-        getGoodsList(state,page){
+        getGoodsList(state,page,keywords){
             switch (state) {
                 case 1:
                     this.inlineType = "info"
@@ -107,7 +142,8 @@ export default {
             }
             let data = {
                 state,
-                page
+                page,
+                keywords
             }
             getGoodsList(data,this.info).then(res => {
                 
@@ -115,9 +151,16 @@ export default {
                 //循环添加一个 查看数量flag
                 
                 for(let i = 0;i < this.listInfo.length;i++){
-
+                     let element = []
                     //$set 触发试图更新
                     this.$set(this.listInfo[i],"checkNumFlag",true);
+                   
+                   // 这便是 平台类型的  重新排列数组
+                    // for (let index = 0; index < this.listInfo[i].state_to_platform_web.length; index++) {
+                    //     element.push(this.listInfo[i].state_to_platform_web[index].id) 
+                    // }
+                    // this.$set(this.listInfo[i],"platformList",element);
+                    element = []
                 }
                 console.log(this.listInfo,"infofffffofofofofofofofofofo")
                 this.total = res.data.data.total
@@ -141,7 +184,7 @@ export default {
             if(this.noType == "primary"){
                 type = 3
             }
-            this.getGoodsList(type,val)
+            this.getGoodsList(type,val,this.searchInfo)
         }
     }
 
@@ -156,9 +199,9 @@ export default {
         .el-input__inner{
             width: 320px;
             height: 30px;
-            border: none;
+            // border: none;
             line-height: 30px;
-            margin-top: 10px;
+            // margin-top: 10px;
         }
         .el-input__suffix{
             top: 5px;
@@ -171,6 +214,7 @@ export default {
         width: 1200px;
         background: #fff;
         position: relative;
+        min-height: 700px;
         .title{
             width: 1140px;
             margin: auto;
@@ -181,7 +225,7 @@ export default {
             height: 60px;
             width: 1140px;
             background: #eee;
-            margin:10px auto 20px;
+            margin:10px auto 8px;
             display: flex;
             justify-content: space-between;
             align-items: center;

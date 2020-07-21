@@ -1,7 +1,7 @@
 <template>
   <div class="showContent">
-    <p>充值</p>
-        <div style="margin-top:60px">
+    <!-- <p>充值</p> -->
+    <div style="margin-top:60px">
       <el-form label-width="140px" :model="formLabelAlign">
         <el-form-item label="充值金额：">
           <el-radio
@@ -53,13 +53,13 @@ export default {
 
 <style lang="scss" scoped>
 .showContent {
-  width: 1200px;
+  // width: 1200px;
   background: #fff;
   position: relative;
   min-height: 700px;
-   p{
-            margin: 40px 0 0 40px;
-            font-size: 20px;
-        }
+  p {
+    margin: 40px 0 0 40px;
+    font-size: 20px;
+  }
 }
 </style>

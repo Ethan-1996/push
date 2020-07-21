@@ -1,5 +1,26 @@
 <template>
 <div class="hisList">
+  <div class="explanation">
+    Tips:
+    <div v-for="item in platformData " :key="item.id" style="display:inline">
+      {{item.platform}}
+      <el-tooltip class="item" effect="dark" :content="item.descri" placement="top">
+      <p>?</p>
+    </el-tooltip>
+    </div>
+    <!-- Tips:自有平台 
+    <el-tooltip class="item" effect="dark" content="自有平台" placement="top">
+      <p>?</p>
+    </el-tooltip> 
+    合作平台 
+    <el-tooltip class="item" effect="dark" content="合作平台" placement="top">
+      <p>?</p>
+    </el-tooltip>  
+    分发平台 
+    <el-tooltip class="item" effect="dark" content="分发平台" placement="top">
+      <p>?</p>
+    </el-tooltip>  -->
+  </div>
   <el-table
     :data="listInfo"
     style="width: 1140px;margin:auto"
@@ -38,14 +59,14 @@
     </el-table-column>
     <el-table-column
       label="券后价"
-      width="110">
+      width="90">
       <template slot-scope="scope">
         <span style="text-align:center">{{scope.row.post_coupon_price}}</span>
       </template>
     </el-table-column>
     <el-table-column
       label="佣金"
-      width="110">
+      width="90">
       <template slot-scope="scope">
         <span>{{scope.row.commission}}%</span>
       </template>
@@ -71,14 +92,24 @@
     </el-table-column>
     <el-table-column
       label="状态"
-      width="110">
+      width="80">
       <template slot-scope="scope">
         <span v-show="scope.row.state == 1">预告</span>
         <span v-show="scope.row.state == 2">进行中</span>
         <span v-show="scope.row.state == 3">无效</span>
       </template>
     </el-table-column>
-    <el-table-column label="操作" width="110">
+    <!-- <el-table-column
+      label="上传平台"
+      width="90">
+      <template slot-scope="scope">
+        <el-checkbox-group v-model="scope.row.platformList">
+            <el-checkbox v-for="item in platformData" :key="item.id" :label="item.id" disabled style="display:block">{{item.platform}}</el-checkbox>
+          
+        </el-checkbox-group>
+      </template>
+    </el-table-column> -->
+    <el-table-column label="操作" width="90">
       <template slot-scope="scope">
         <el-link type="primary" @click="toMore(scope.row.id)">查看</el-link><br/>
         <el-link type="primary" @click="lower(scope.row.id)" v-if="scope.row.upper_lower == 1">下架</el-link>
@@ -107,7 +138,7 @@
   export default {
       name:"List",
       // inject:['reload'],    //引入 app中 刷新方法
-      props:["listInfo","info","getStateNum"],
+      props:["listInfo","info","getStateNum","platformData"],
       watch:{
         listInfo:function(newV, oldV){
           
@@ -123,7 +154,7 @@
           form:{
             remark:"",
           },
-          checkFlag:true
+          checkFlag:true,
         }
       },
     methods: {
@@ -317,5 +348,21 @@
   }
   .check{
     cursor: pointer;
+  }
+
+  .explanation{
+    margin:0 40px;
+    text-align: right;
+    color: #ccc;
+    font-size: 12px;
+    p{
+      border: 1px solid #ccc;
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 6px;
+      text-align: center;
+      cursor: pointer;
+    }
   }
 </style>

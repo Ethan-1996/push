@@ -245,6 +245,12 @@ export default {
             },
           ]
         },
+        {
+          icon: "el-icon-user",
+          index: "/Admin/Platform",
+          title: "平台管理",
+         
+        },
         // {
         //   icon: "el-icon-date",
         //   index: "3",

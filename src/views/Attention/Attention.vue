@@ -6,14 +6,12 @@
     <WebHeader/>
     <!-- 首页内容部分 -->
     <div class="indexContentBox">
-      <keep-alive>
-        <div class="indexContent">
-          <!-- 左侧导航栏 -->
-          <Tabbar/>
-          <!-- 右侧内容 -->
-          <IndexContent :info="info" />
-        </div>
-      </keep-alive>
+      <div class="indexContent">
+        <!-- 左侧导航栏 -->
+        <Tabbar/>
+        <!-- 右侧内容 -->
+        <AttentionContent :info="info" />
+      </div>
     </div>
     <!-- 网站底部部分 -->
     <Footer/>
@@ -25,12 +23,12 @@ import getInfo from '@/utils/getInfo.js'
 import PageTop from "@/components/common/PageTop.vue"
 import WebHeader from "@/components/common/WebHeader.vue"
 import Tabbar from "@/components/common/Tabbar.vue"
-import IndexContent from "@/components/Index/IndexContent.vue"
+import AttentionContent from "@/components/Attention/AttentionContent.vue"
 import Footer from "@/components/common/Footer.vue"
 export default {
   name:"Index",
   components:{
-    PageTop,WebHeader,Tabbar,IndexContent,Footer
+    PageTop,WebHeader,Tabbar,AttentionContent,Footer
   },
   created(){
     getInfo(this.info)

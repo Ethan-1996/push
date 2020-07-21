@@ -1,54 +1,40 @@
 <template>
   <!--为echarts准备一个具备大小的容器dom-->
-  <div id="main"></div>
+  <div id="mainProportion"></div>
 </template>
 <script>
 import echarts from "echarts";
 export default {
-  name: "Echarts",
-  props: ["AxisPriceData", "changeFlagEchart"],
+  name: "mainProportion",
+  props: ["AxisProportionData"],
   watch: {
-    changeFlagEchart: function(newV, oldV) {
-      this.drawPie("main"); //echart 渲染数据 必须重新走一遍函数
+    AxisProportionData: function(newV, oldV) {
+      this.drawPie("mainProportion"); //echart 渲染数据 必须重新走一遍函数
     }
   },
   methods: {
     drawPie(id) {
       this.charts = echarts.init(document.getElementById(id));
       this.charts.setOption({
-        backgroundColor: "#fff",
         title: {
-          text: "单品占比分析",
+          text: "类目占比分析",
           left: "center",
           top: 20,
           textStyle: {
             color: "#999"
           }
         },
-
         tooltip: {
           trigger: "item",
-          formatter: "{a} <br/>{b} : {c} ({d}%)"
+          formatter: "{a} <br/>{b}: {c} ({d}%)"
         },
 
-        // visualMap: {
-        //   show: false,
-        //   min: 0,
-        //   max: 1548,
-        //   inRange: {
-        //     colorLightness: [0, 1]
-        //   }
-        // },
         series: [
           {
             name: "价格 | 佣金",
             type: "pie",
-            radius: "55%",
-            center: ["50%", "50%"],
-            data: this.AxisPriceData.sort(function(a, b) {
-              return a.value - b.value;
-            }),
-            // roseType: "radius",
+            radius: ["50%", "70%"],
+            avoidLabelOverlap: false,
             label: {
               color: "rgba(0, 0, 0, 0.6)"
             },
@@ -60,8 +46,10 @@ export default {
               length: 10,
               length2: 20
             },
+
+            data: this.AxisProportionData,
             itemStyle: {
-              //     color: function(params) {          //设置颜色
+              // color: function(params) {          //设置颜色
               //     var colorList = ["#5b8ff9","#5ad8a6","#5d7092","#f6db16","#e86452","#6dc8ec","#945fb9","#ff9845","#1e9493","#ff99c3"]
               //     return colorList[params.dataIndex]
               // },
@@ -69,37 +57,36 @@ export default {
                 color: function(params) {
                   var colorList = [
                     {
-                      c1: " #1e9593",
-                      c2: "#cefffe"
+                      c1: " #eb8086",
+                      c2: "#faaf9c"
                     },
                     {
-                      c1: " #945fb9",
-                      c2: "#e1b7fe"
-                    },
-                    {
-                      c1: " #f6bd16",
-                      c2: "#fff2cc"
-                    },
-                    {
-                      c1: " #ff98c3",
-                      c2: "#ffb9d6"
-                    },
-                    {
-                      c1: " #6ec8ed",
-                      c2: "#bfedff"
+                      c1: " #76b9ef",
+                      c2: "#b0cde4"
                     },
                     {
                       c1: "#5ad9a6",
                       c2: "#b4ffe1"
                     },
                     {
-                      c1: " #76b9ef",
-                      c2: "#b0cde4"
+                      c1: " #6ec8ed",
+                      c2: "#bfedff"
                     },
-
                     {
-                      c1: " #eb8086",
-                      c2: "#faaf9c"
+                      c1: " #ff98c3",
+                      c2: "#ffb9d6"
+                    },
+                    {
+                      c1: " #f6bd16",
+                      c2: "#fff2cc"
+                    },
+                    {
+                      c1: " #945fb9",
+                      c2: "#e1b7fe"
+                    },
+                    {
+                      c1: " #1e9593",
+                      c2: "#cefffe"
                     }
                   ];
                   return new echarts.graphic.LinearGradient(1, 0, 0, 0, [
@@ -117,12 +104,6 @@ export default {
                   /*  return colorList[params.dataIndex]*/
                 }
               }
-            },
-
-            animationType: "scale",
-            animationEasing: "elasticOut",
-            animationDelay: function(idx) {
-              return Math.random() * 200;
             }
           }
         ]
@@ -132,17 +113,16 @@ export default {
   //调用
   mounted() {
     this.$nextTick(function() {
-      this.drawPie("main");
+      this.drawPie("mainProportion");
     });
   }
 };
 </script>
 <style lang="scss" scoped>
-#main {
+#mainProportion {
   width: 500px;
   height: 400px;
   display: inline-block;
-  margin-left: 50px;
   //   margin: auto;
 }
 </style>

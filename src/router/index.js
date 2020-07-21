@@ -7,7 +7,10 @@ Vue.use(VueRouter)
     {
       path: '/',       //首页 产品分析页面
       name: 'Index',
-      component: () => import('../views/Index/Index.vue')
+      component: () => import('../views/Index/Index.vue'),
+      meta:{
+        keepAlive:true
+      }
     },
     {                   //登录页面
       path: '/Login',
@@ -56,11 +59,16 @@ Vue.use(VueRouter)
       name: 'Show',
       component: () => import('../views/Show/Show.vue')
     },
-    {                    //充值中心
-      path: '/Recharge',
-      name: 'Recharge',
-      component: () => import('../views/Recharge/Recharge.vue')
+    {                    //我的关注
+      path: '/Attention',
+      name: 'Attention',
+      component: () => import('../views/Attention/Attention.vue')
     },
+    // {                    //充值中心
+    //   path: '/Recharge',
+    //   name: 'Recharge',
+    //   component: () => import('../views/Recharge/Recharge.vue')
+    // },
 
     {                    //管理员登陆
       path: '/AdminLogin',
@@ -209,6 +217,13 @@ Vue.use(VueRouter)
           path: 'Achievement',
           name: 'Achievement',
           component: () => import('../views/Admin/Mine/Achievement.vue')
+        },
+
+        // 平台部分
+        {                    //平台管理
+          path: 'Platform',
+          name: 'Platform',
+          component: () => import('../views/Admin/Platform/Platform.vue')
         },
       ]
     },

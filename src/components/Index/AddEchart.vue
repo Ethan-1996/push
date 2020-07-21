@@ -1,22 +1,22 @@
 <template>
   <!--为echarts准备一个具备大小的容器dom-->
-  <div id="main"></div>
+  <div id="mainAdd"></div>
 </template>
 <script>
-import echarts from "echarts";
-export default {
-  name: "Echarts",
-  props: ["AxisPriceData", "changeFlagEchart"],
-  watch: {
-    changeFlagEchart: function(newV, oldV) {
-      this.drawPie("main"); //echart 渲染数据 必须重新走一遍函数
-    }
-  },
-  methods: {
-    drawPie(id) {
-      this.charts = echarts.init(document.getElementById(id));
-      this.charts.setOption({
-        backgroundColor: "#fff",
+    import echarts from 'echarts'
+    export default {
+        name: 'Echarts',
+        props:["xData","changeFlagEchart"],
+        watch:{
+            changeFlagEchart:function(newV, oldV){
+                this.drawPie('mainAdd')        //echart 渲染数据 必须重新走一遍函数
+            }
+        },
+        methods:{
+            drawPie(id){
+               this.charts = echarts.init(document.getElementById(id))
+               this.charts.setOption({
+                    backgroundColor: "#fff",
         title: {
           text: "单品占比分析",
           left: "center",
@@ -45,7 +45,7 @@ export default {
             type: "pie",
             radius: "55%",
             center: ["50%", "50%"],
-            data: this.AxisPriceData.sort(function(a, b) {
+            data: this.xData.sort(function(a, b) {
               return a.value - b.value;
             }),
             // roseType: "radius",
@@ -125,24 +125,22 @@ export default {
               return Math.random() * 200;
             }
           }
-        ]
-      });
+        ]              
+                })
+            }
+        },
+      //调用
+        mounted(){
+            this.$nextTick(function() {
+                this.drawPie('mainAdd')
+            })
+        }
     }
-  },
-  //调用
-  mounted() {
-    this.$nextTick(function() {
-      this.drawPie("main");
-    });
-  }
-};
 </script>
 <style lang="scss" scoped>
-#main {
-  width: 500px;
-  height: 400px;
-  display: inline-block;
-  margin-left: 50px;
-  //   margin: auto;
-}
+    #mainAdd{
+        width: 1000px;
+        height: 400px;
+        margin: auto;
+    }
 </style>

@@ -6,46 +6,51 @@
                 router
                 :default-active="$route.path"
                 class="el-menu-vertical-demo"
+                active-text-color="#fff"
             >
                 <el-submenu index="1">
                     <template slot="title">
-                        <i class="el-icon-s-operation"></i>
+                        <img src="../../assets/images/goodsInfoIcon.png" alt="">
                         <span>商品信息</span>
                     </template>
                     <el-menu-item-group>
                         <el-menu-item index="/">
-                            <i class="el-icon-view"></i>
+                            <img src="../../assets/images/indexIcon.png" alt="">
                             产品分析
                         </el-menu-item>
-                        <!-- <el-menu-item index="/Release">
-                            <i class="el-icon-upload"></i>
+                        <el-menu-item index="/Release">
+                            <img src="../../assets/images/releaseIcon.png" alt="">
                             发布产品
-                        </el-menu-item> -->
+                        </el-menu-item>
                         <el-menu-item index="/History">
-                            <i class="el-icon-map-location"></i>
+                            <img src="../../assets/images/historyIcon.png" alt="">
                             历史记录
                         </el-menu-item>
                         <el-menu-item index="/Show">
-                            <i class="el-icon-set-up"></i>
+                            <img src="../../assets/images/showIcon.png" alt="">
                             效果展示
                         </el-menu-item>
                         <el-menu-item index="/PersonCenter">
-                            <i class="el-icon-set-up"></i>
+                            <img src="../../assets/images/personIcon.png" alt="">
                             个人中心
                         </el-menu-item>
-                        <el-menu-item index="/Recharge">
+                        <el-menu-item index="/Attention">
+                            <img src="../../assets/images/attentionIcon.png" alt="">
+                            我的关注
+                        </el-menu-item>
+                        <!-- <el-menu-item index="/Recharge">
                             <i class="el-icon-set-up"></i>
                             充值
-                        </el-menu-item>
+                        </el-menu-item> -->
 
                         <el-menu-item index="/MoneyList">
-                            <i class="el-icon-set-up"></i>
-                            充值记录
+                            <img src="../../assets/images/indexIcon.png" alt="">
+                            积分记录
                         </el-menu-item>
-                        <el-menu-item index="/InvoiceList">
+                        <!-- <el-menu-item index="/InvoiceList">
                             <i class="el-icon-set-up"></i>
                             发票管理
-                        </el-menu-item>
+                        </el-menu-item> -->
                     </el-menu-item-group>
                 </el-submenu>
                 <!-- <el-submenu index="2">
@@ -75,7 +80,11 @@ export default {
     name:"Tabbar",
 }
 </script>
-
+<style lang="scss">
+.el-menu-item.is-active {
+   background-color: #3991e9 !important;
+}
+</style>
 <style lang="scss" scoped>
     .tabbar{
         width: 180px;

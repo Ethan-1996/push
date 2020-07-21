@@ -12,12 +12,15 @@
                 <el-form-item label="注册时间：">
                     <span>{{formLabelAlign.create_time}}</span>
                 </el-form-item>
-                <el-form-item label="专属邀请链接：">
-                    <span>{{formLabelAlign.invited_url}}</span>
-                </el-form-item>
                 <el-form-item label="剩余积分：">
-                    <span>{{formLabelAlign.integral}}</span><el-button @click="toNew" size="small" style="margin-left:40px">获得积分</el-button>
+                    <span>{{formLabelAlign.integral}}</span>
+                    <!-- <el-button @click="toNew" size="small" style="margin-left:40px">获得积分</el-button> -->
                 </el-form-item>
+                <el-form-item label="专属邀请链接：">
+                    <span>{{formLabelAlign.invited_url}}</span><br>
+                    <span style="display:block">Tips：</span>
+                </el-form-item>
+                
                 <!-- <div v-if="showFlag">
                     <el-form-item label="充值：">
                         <el-radio v-for="(value,key,index) in moneyList" :key="index" v-model="radio" :label="key">{{value.order_amount}} + {{value.order_give}}(赠送)</el-radio>
