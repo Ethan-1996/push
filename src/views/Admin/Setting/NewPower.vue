@@ -12,6 +12,7 @@
                     v-model="form.pid"
                     :options="options"
                     :props="SetKesDept"
+                    @change="aaa"
                     clearable></el-cascader>
             </div>
                 
@@ -65,9 +66,9 @@ export default {
                 is_menu:"1",
                 pid:"",
                 describe:"",
-                view_url:"",
+                view_url:"无",
                 back_url:"",
-                icon:""
+                icon:"1"
             },
             options:[],
             info:{},
@@ -98,7 +99,28 @@ export default {
         if(res.data.code == 200){
           console.log(res)
           this.options = res.data.data
-          
+          // for (let i = 0; i < this.options.length; i++) {
+          //   if (this.options[i].is_menu == 2) {
+          //     this.options.splice(i,1)
+          //   }
+          //   if (this.options[i].children && this.options[i].children.length != 0) {
+          //     for (let j = 0; j < this.options[i].children.length; j++) {
+          //       if (this.options[i].children[j].is_menu == 2) {
+          //         this.options[i].children.splice(j,1)
+          //       }
+          //       if (this.options[i].children && this.options[i].children.length != 0 && this.options[i].children[j].children && this.options[i].children[j].children.length != 0) {
+          //         for (let k = 0; k < this.options[i].children[j].children.length; k++) {
+          //           if (this.options[i].children[j].children[k].is_menu == 2) {
+          //             this.options[i].children.splice(k,1)
+          //           }
+                    
+          //         }
+          //       }
+          //     }
+          //   }
+          // }
+          this.formatData(this.options)
+          // console.log(this.options);
         }else{
           this.$message({   
               showClose: true,
@@ -109,11 +131,30 @@ export default {
       })
     },
     methods:{
+      formatData(data){
+        for (let i = 0; i < data.length; i++) {
+          if (data[i].is_menu == 2) {
+            data.splice(i,1)
+            this.formatData(data)
+            return false
+          }else{
+            if (data[i].children && data[i].children.length != 0) {
+              // console.log(data[i].childre,"children")
+              this.formatData(data[i].children)
+            }
+          }  
+        }
+      },
+      aaa(){
+        console.log(this.form.pid);
+      },
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-
-            this.form.pid = parseInt(this.form.pid)
+            let index = this.form.pid.length - 1
+            this.form.pid = this.form.pid[index]
+            // console.log(this.form.pid);
+            // return false
             addRole(this.form,this.info).then(res => {
               if(res.data.code == 200){
                 this.$message({   

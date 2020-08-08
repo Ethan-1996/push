@@ -229,7 +229,7 @@ export default {
               phone:this.form.phone,
               password:this.$md5('$' + this.form.password)
           }
-          editAdmin({...this.form},this.info).then(res => {
+          editAdmin(data,this.info).then(res => {
               if(res.data.code == 200){
                   this.$message({   
                     showClose: true,

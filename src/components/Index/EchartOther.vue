@@ -77,9 +77,9 @@ export default {
       isShow: true,
       id: "",
       xAxisData: [1, 2, 3, 4, 5, 6],
-      yAxisData1: [600, 500, 400, 300, 200, 100], //销量
-      yAxisData2: [10, 20, 30, 40, 50, 60], // 价格
-      yAxisData3: [2, 4, 6, 8, 10, 12] // 佣金
+      yAxisData1: [120, 132, 101, 134, 90, 230, 210], //销量
+      yAxisData2: [220, 182, 191, 234, 290, 330, 310], // 价格
+      yAxisData3: [150, 232, 201, 154, 190, 330, 410] // 佣金
     };
   },
   methods: {
@@ -154,9 +154,16 @@ export default {
           //     }
           // }
         },
-        // legend: {
-        //   data: [{name:"价格",icon:"rectangle"}, {name:"销量",icon:"rectangle"}, {name:"佣金",icon:"rectangle"}]
-        // },
+        legend: {
+          type: 'plain',
+          orient: 'vertical',
+          align:'left',
+          x:'right',      //可设定图例在左、右、居中
+          y:'bottom',     //可设定图例在上、下、居中
+          padding:[0,20,100,0],   //可设定图例[距上方距离，距右方距离，距下方距离，距左方距离]
+          data: [{name:"价格",icon:"rectangle"}, {name:"销量",icon:"rectangle"}, {name:"佣金",icon:"rectangle"}]
+        },
+        
         grid: {
           left: "3%",
           right: "4%",
@@ -305,7 +312,7 @@ export default {
 .mainSelf {
   width: 360px;
   height: 200px;
-  margin-bottom: 40px;
+  // margin-bottom: 40px;
   // position: relative;
   // left: 100px;
 }

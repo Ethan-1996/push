@@ -1,6 +1,6 @@
 <template>
   <!--为echarts准备一个具备大小的容器dom-->
-  <div id="main"></div>
+  <div id="maina"></div>
 </template>
 <script>
 import echarts from "echarts";
@@ -9,7 +9,7 @@ export default {
   props: ["AxisPriceData", "changeFlagEchart"],
   watch: {
     changeFlagEchart: function(newV, oldV) {
-      this.drawPie("main"); //echart 渲染数据 必须重新走一遍函数
+      this.drawPie("maina"); //echart 渲染数据 必须重新走一遍函数
     }
   },
   methods: {
@@ -132,13 +132,13 @@ export default {
   //调用
   mounted() {
     this.$nextTick(function() {
-      this.drawPie("main");
+      this.drawPie("maina");
     });
   }
 };
 </script>
 <style lang="scss" scoped>
-#main {
+#maina {
   width: 500px;
   height: 400px;
   display: inline-block;

@@ -1,106 +1,156 @@
 <template>
-    <div class="releaseContent">
-        <p>个人中心</p>
-        <div style="margin-top:60px">
-            <el-form label-width="140px" :model="formLabelAlign">
-                <el-form-item label="店铺名：">
-                    <span>{{formLabelAlign.nick}}</span>
-                </el-form-item>
-                <el-form-item label="电话：">
-                    <span>{{formLabelAlign.phone}}</span>
-                </el-form-item>
-                <el-form-item label="注册时间：">
-                    <span>{{formLabelAlign.create_time}}</span>
-                </el-form-item>
-                <el-form-item label="剩余积分：">
-                    <span>{{formLabelAlign.integral}}</span>
-                    <!-- <el-button @click="toNew" size="small" style="margin-left:40px">获得积分</el-button> -->
-                </el-form-item>
-                <el-form-item label="专属邀请链接：">
-                    <span>{{formLabelAlign.invited_url}}</span><br>
-                    <span style="display:block">Tips：</span>
-                </el-form-item>
-                
-                <!-- <div v-if="showFlag">
-                    <el-form-item label="充值：">
-                        <el-radio v-for="(value,key,index) in moneyList" :key="index" v-model="radio" :label="key">{{value.order_amount}} + {{value.order_give}}(赠送)</el-radio>
-                    </el-form-item>
-                    <el-form-item label="">
-                        <el-button @click="toNewPage" :disabled="this.radio==''?true:false">去支付</el-button>
-                    </el-form-item>
-                </div> -->
-              
-
-            </el-form>
-
-
-            <!-- <el-drawer
-                
-                :visible.sync="table"
-                direction="rtl"
-                size="50%">
-                <el-table :data="gridData">
-                    <el-table-column property="date" label="日期" width="150"></el-table-column>
-                    <el-table-column property="name" label="姓名" width="200"></el-table-column>
-                    <el-table-column property="address" label="地址"></el-table-column>
-                    </el-table>
-                </el-drawer> -->
-        </div>
+  <div class="releaseContent person">
+    <p>我的店铺</p>
+    <div style="margin-top:60px">
+      <el-form label-width="140px" :model="formLabelAlign">
+        <el-form-item label="店铺名：">
+          <span>{{formLabelAlign.nick}}</span>
+        </el-form-item>
+        <el-form-item label="电话：">
+          <span>{{formLabelAlign.phone}}</span>
+        </el-form-item>
+        <el-form-item label="注册时间：">
+          <span>{{formLabelAlign.create_time}}</span>
+        </el-form-item>
+        <el-form-item label="剩余积分：">
+          <span>{{formLabelAlign.integral}}</span>
+        </el-form-item>
+        <el-form-item label="专属邀请链接：">
+          <span id="invited_url">{{formLabelAlign.invited_url}}</span>
+          <input type="button" value="一键复制" @click="copy('invited_url')" class="copy" />
+        </el-form-item>
+        <el-form-item label="分享好礼：" style="color:red">
+          <p style="color:red;line-height:20px;font-size:14px;margin-top:10px">1. 成功邀请好友后，即得10积分。</p>
+          <p style="color:red;line-height:20px;font-size:14px;margin:0">2. 好友首次充值，即得充值20%积分。</p>
+        </el-form-item>
+      </el-form>
     </div>
+  </div>
 </template>
 
 <script>
-import {showInfo,getRecharge} from '@/api/api.js'
+import { showInfo, getRecharge } from "@/api/api.js";
 export default {
-    name:"PersonCenterCon",
-    props:['info'],
-    data(){
-        return {
-            showFlag:false,
-            formLabelAlign:{},
-            moneyList:{},
-            radio:"",
+  name: "PersonCenterCon",
+  props: ["info"],
+  data() {
+    return {
+      showFlag: false,
+      formLabelAlign: {},
+      moneyList: {},
+      radio: "",
+    };
+  },
+  created() {
+    showInfo(this.info).then((res) => {
+      if (res.data.code == 200) {
+        this.formLabelAlign = res.data.data;
+      }
+    });
+
+    getRecharge(this.info).then((res) => {
+      if (res.data.code == 200) {
+        this.moneyList = res.data.data;
+      }
+    });
+  },
+  methods: {
+    copy(id, attr) {
+      /**
+       * 一键粘贴
+       *   {String} id [需要粘贴的内容]
+       *   {String} attr [需要 copy 的属性，默认是 innerText，主要用途例如赋值 a 标签上的 href 链接]
+       *
+       * range + selection
+       *
+       * 1.创建一个 range
+       * 2.把内容放入 range
+       * 3.把 range 放入 selection
+       *
+       * 注意：参数 attr 不能是自定义属性
+       * 注意：对于 user-select: none 的元素无效
+       * 注意：当 id 为 false 且 attr 不会空，会直接复制 attr 的内容
+       */
+      let target = null;
+
+      if (attr) {
+        target = document.createElement("div");
+        target.id = "tempTarget";
+        target.style.opacity = "0";
+        if (id) {
+          let curNode = document.querySelector("#" + id);
+          target.innerText = curNode[attr];
+        } else {
+          target.innerText = attr;
         }
+        document.body.appendChild(target);
+      } else {
+        target = document.querySelector("#" + id);
+      }
+
+      try {
+        let range = document.createRange();
+        range.selectNode(target);
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
+        document.execCommand("copy");
+        window.getSelection().removeAllRanges();
+        this.$message({
+          showClose: true,
+          duration: 1000,
+          message: "复制成功!",
+          type: "success",
+        });
+      } catch (e) {
+        this.$message({
+          showClose: true,
+          duration: 1000,
+          message: "复制失败!",
+          type: "error",
+        });
+      }
+
+      if (attr) {
+        // remove temp target
+        target.parentElement.removeChild(target);
+      }
     },
-    created(){
-        showInfo(this.info).then(res => {
-            if(res.data.code == 200){
-                this.formLabelAlign = res.data.data
-                 //console.log(this.formLabelAlign.nick)
-            }
-        })
-
-        getRecharge(this.info).then(res => {
-             if(res.data.code == 200){
-               this.moneyList = res.data.data
-                 //console.log(res)
-            }
-        })
+    toNew() {
+      this.$router.push("/Recharge");
     },
-    methods:{
-        toNew(){
-            this.$router.push("/Recharge")
-        },
-        toNewPage(){
-            
-                window.open (`${this.$header}/index/Payment/getCode?tp=${this.radio}&userid=${this.info.user_id}`, "newwindow", "height=800px, width=1200px, top=100px, left=400px, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no") 
-
-
-        }
-    }
-}
+  },
+};
 </script>
 
-
-<style lang="scss" scoped>
-    .releaseContent{
-        padding-left: 40px;
-        width: 1160px;
-        background: #fff;
-        min-height: 700px;
-        p{
-            margin-top: 40px;
-            font-size: 20px;
-        }
+<style lang="scss">
+.person {
+  .el-form-item:nth-of-type(6) {
+    .el-form-item__label {
+      color: red !important;
     }
+  }
+}
+</style>
+<style lang="scss" scoped>
+.releaseContent {
+  padding-left: 40px;
+  width: 1160px;
+  background: #fff;
+  min-height: 700px;
+  p {
+    margin-top: 40px;
+    font-size: 20px;
+  }
+  .copy {
+    width: 60px;
+    height: 23px;
+    line-height: 23px;
+    background: #3991e8;
+    color: #fff;
+    text-align: center;
+    border-radius: 4px;
+    margin-left: 20px;
+    cursor: pointer;
+  }
+}
 </style>

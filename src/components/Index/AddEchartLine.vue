@@ -41,7 +41,7 @@ export default {
         grid: {
           left: "3%",
           right: "4%",
-          bottom: "10%",
+          bottom: "12%",
           containLabel: true
         },
         xAxis: [
@@ -214,7 +214,7 @@ export default {
 <style lang="scss" scoped>
 #mainAddLine {
   width: 900px;
-  height: 480px;
+  height: 280px;
   margin: 40px auto;
   // position: relative;
   // left: 100px;

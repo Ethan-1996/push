@@ -68,8 +68,8 @@
       </div>
       <div class="blank"></div>
 
-      <el-dialog title="关注竞品数据" :visible.sync="dialogFormVisible" width="80%" top="5%">
-        <AddEchart :xData="xData" :yData="yData" />
+      <el-dialog title="关注竞品数据" :visible.sync="dialogFormVisible" width="70%" top="3%">
+        <AddEchart :xData="xData"  />
         <AddEchartLine
           :xDataLine="xDataLine"
           :yDataLine="yDataLine"
@@ -110,26 +110,38 @@ export default {
       pageShow: true,
       list: [],
       xData: [],
-      yData: [],
+      // yData: [],
       xDataLine: [],
       yDataLine: [],
       yDataLinePrice: [],
-      yDataLineM: []
+      yDataLineM: [],
+      changeFlagEchart:1
     };
   },
   created() {
     this.getAttention(1);
   },
   methods: {
+
+           //   整理 新加的  第一个 图标搜狐据 
+        formatAddEchartInfo(info){
+            this.xData = []
+            for(var i = 0;i < info.length;i++){
+                this.xData.push({name:info[i].price + ' | ' + info[i].commission,value:info[i].proportion})
+            }
+            this.changeFlagEchart += 1
+        },
+
+
     //   整理 新加的  第一个 图标搜狐据
-    formatAddEchartInfo(info) {
-      this.yData = [];
-      this.xData = [];
-      for (var i = 0; i < info.length; i++) {
-        this.yData.push(info[i].proportion);
-        this.xData.push(info[i].price + " | " + info[i].commission);
-      }
-    },
+    // formatAddEchartInfo(info) {
+    //   this.yData = [];
+    //   this.xData = [];
+    //   for (var i = 0; i < info.length; i++) {
+    //     this.yData.push(info[i].proportion);
+    //     this.xData.push(info[i].price + " | " + info[i].commission);
+    //   }
+    // },
     //   整理 新加的  第二个 图标搜狐据
     formatAddLineInfo(info) {
       this.yDataLinePrice = [];

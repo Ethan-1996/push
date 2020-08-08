@@ -6,6 +6,22 @@ import request from '@/utils/request'
 
 const Header = "/api"
 
+
+
+
+
+
+const indexUrl= Header + '/index/Homepage/index'; //发送手机验证码
+export function index(info) {
+  return request({
+    url: indexUrl,
+    method: 'get',
+    headers:{"user-info":info.user_info,"user-id":info.user_id}
+  })
+}
+
+
+
 const IndexUrl= Header + '/index/Login/sendCode'; //发送手机验证码
 export function sendCode(query) {
   return request({
@@ -129,6 +145,20 @@ export function editLower(data,info) {
 }
 
 
+
+const checkoutCouponUrl= Header + '/index/goods_coupon_state/checkoutCoupon'; //下架前  检测优惠卷是否有效
+export function checkoutCoupon(data,info) {
+  return request({
+    data:data,
+    url: checkoutCouponUrl,
+    method: 'post',
+    headers:{"user-info":info.user_info,"user-id":info.user_id}
+  })
+}
+
+
+
+
 const editRemarkUrl= Header + '/index/goods_coupon_state/editRemark'; //备注
 export function editRemark(data,info) {
   return request({
@@ -194,9 +224,8 @@ export function getShowGoodsList(data,info) {
 
 
 const getSalesVolumeUrl= Header + '/index/effect/getSalesVolume'; //获取show页面图表信息
-export function getSalesVolume(data,info) {
+export function getSalesVolume(info) {
   return request({
-    data:data,
     url: getSalesVolumeUrl,
     method: 'post',
     headers:{"user-info":info.user_info,"user-id":info.user_id}

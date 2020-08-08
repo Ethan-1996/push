@@ -17,7 +17,7 @@
           <p>{{scope.row.create_time}}</p>
         </template>
       </el-table-column>
-      <el-table-column label="优惠券截至领取时间" width="100">
+      <el-table-column label="优惠券截至领取时间" width="120">
         <template slot-scope="scope">
           <p>{{scope.row.state_to_coupon.coupon_end_time}}</p>
         </template>
@@ -29,19 +29,19 @@
           </el-tooltip> 
         </template>
       </el-table-column>
-      <el-table-column label="领券量" width="65">
+      <el-table-column label="领券量" >
         <template slot-scope="scope">
-          <span>{{scope.row.state_to_coupon.coupon_receive_count}}</span>
+          <span>{{scope.row.estimate_receive_num_cp}}</span>
         </template>
       </el-table-column>
-      <el-table-column label="领券量预估成交金额" width="100">
+      <el-table-column label="类目平均转化率">
         <template slot-scope="scope">
-          <p class="tick">￥{{ scope.row.estimate_sales_volume_cp }}</p>
+          <p class="tick">{{ parseInt(scope.row.estimate_ratio_cp * 100) }}%</p>
         </template>
       </el-table-column>
-      <el-table-column label="领券量预估投产比" width="92">
+      <el-table-column label="预估成交量" width="92">
         <template slot-scope="scope">
-          <p>{{ scope.row.estimate_commissioning_ratio_cp }}</p>
+          <p>{{ scope.row.estimate_deal_num_cp }}</p>
         </template>
       </el-table-column>
       <!-- <el-table-column label="销量" width="60">
@@ -49,21 +49,17 @@
           <span>{{scope.row.state_to_goods.volume}}</span>
         </template>
       </el-table-column> -->
-      <el-table-column label="销量预估成交金额" width="100">
+      <el-table-column label="销售预估成交金额" width="100">
         <template slot-scope="scope">
-          <p class="tick">￥{{ scope.row.estimate_sales_volume_sv }}</p>
-        </template>
-      </el-table-column>
-      <el-table-column label="销量预估投产比" width="92">
-        <template slot-scope="scope">
-          <p>{{ scope.row.estimate_commissioning_ratio_sv }}</p>
+          <p class="tick">￥{{ scope.row.estimate_sales_volume_cp }}</p>
         </template>
       </el-table-column>
       <el-table-column label="是否失效" width="80">
         <template slot-scope="scope">
           <span v-show="scope.row.state == 1">预告</span>
           <span v-show="scope.row.state == 2">进行中</span>
-          <span v-show="scope.row.state == 3">无效</span>
+          <span v-show="scope.row.state == 4">失效</span>
+          <span v-show="scope.row.state == 3">已结束</span>
         </template>
       </el-table-column>
       <el-table-column label="操作" width="50">
@@ -94,6 +90,7 @@ export default {
           this.reload()
         }else{
           this.$router.push({path:"/Show",query:{id}})
+          
         }
         
       },

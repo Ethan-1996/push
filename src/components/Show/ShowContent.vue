@@ -9,9 +9,10 @@
       <!-- 表格部分 -->
       <ShowTable :goodsList="goodsList"/>
       <!-- 分页部分 -->
+      <div class="blank"></div>
     <div class="page">
         <el-pagination
-            :hide-on-single-page="true"
+            :hide-on-single-page="false"
             background 
             :page-size="10"
             @current-change="handleCurrentChange"
@@ -50,49 +51,44 @@ export default {
         }
     },
     created(){
-        if(this.$route.query.id){
-
-            //获取 这件商品的数据    type 默认 1
-            this.getSingleGoods(this.$route.query.id)
-            this.isAll = false
+        // console.log(this.info.user_info)
+        if (!this.info.user_info) {
+            console.log(11212121212121)
+            return false
         }else{
-            this.isAll = true
-            this.getSalesVolume()
-            //获取表格 的信息
-            this.getShowGoodsList(1)
+           if(this.$route.query.id){
+
+                //获取 这件商品的数据    type 默认 1
+                this.getSingleGoods(this.$route.query.id)
+                this.getShowGoodsList(1)
+                this.isAll = false
+            }else{
+                this.isAll = true
+                this.getSalesVolume()
+                //获取表格 的信息
+                this.getShowGoodsList(1)
+            }
         }
+        
         
     },
     methods:{
         //当查看 某件商品的函数
         getSingleGoods(id){
             let data = {
-                id,
-                type:1
+                id
             }
             getSingleGoods(data,this.info).then(res => {
                 
                 if(res.data.code == 200){
                     // ShowTable 的数据
-                    this.goodsList = []
-                    this.goodsList.push(res.data.data.goods_info)
+                    // this.goodsList = []
+                    // this.goodsList.push(res.data.data.goods_info)
 
                     //echarts 的数据
-                    this.formatDay(res.data.data.sales_volume.day)  //默认数据 
-                    data.type = 2
-                    getSingleGoods(data,this.info).then(res => {
-                        if(res.data.code == 200){
-                            this.yAxisData2 = []
-                            for(let key in res.data.data.sales_volume.day){       
-                                this.yAxisData2.push(res.data.data.sales_volume.day[key])
-                            }
-                        }else{
-                            this.$message({
-                                message: res.data.msg,
-                                type: 'error'
-                            })
-                        }
-                    })
+                    this.formatDay(res.data.data.sales_volume)  //默认数据 
+                    console.log(res,888888888888888888)
+                    
                 }else{
                     this.$message({
                         message: res.data.msg,
@@ -106,33 +102,17 @@ export default {
         formatDay(info){       //取值   整理 day 模式数据
             this.xAxisData = []
             this.yAxisData = []
+            this.yAxisData2 = []
             for(let key in info){       
                 this.xAxisData.push(key)
-                this.yAxisData.push(info[key])
+                this.yAxisData.push(info[key].estimate_receive_num)
+                this.yAxisData2.push(info[key].estimate_deal_num)
             }
         },
         getSalesVolume(){
-            let data = {
-                type:1
-            }
-            getSalesVolume(data,this.info).then(res => {
+            getSalesVolume(this.info).then(res => {
                 if(res.data.code == 200){
-                    this.formatDay(res.data.data.day)
-                    data.type = 2
-                    getSalesVolume(data,this.info).then(res => {
-                        if(res.data.code == 200){
-                            this.yAxisData2 = []
-                            for(let key in res.data.data.day){       
-                                this.yAxisData2.push(res.data.data.day[key])
-                            }
-                        }else{
-                            this.$message({
-                                message: res.data.msg,
-                                type: 'error'
-                            })
-                        }
-                    })
-                   
+                    this.formatDay(res.data.data)  
                 }else{
                     this.$message({
                         message: res.data.msg,
@@ -177,11 +157,18 @@ export default {
             font-weight: 800;
             margin: 20px 0 0 30px;
         }
+       
         .page{
             width: 1140px;
-            margin: auto;
-            margin: 40px auto;
             text-align: center;
+            position: absolute;
+            bottom: 40px;
+        }
+        .blank{
+            width: 1140px;
+            margin: auto;
+            height: 100px;
+            background: #fff;
         }
         .leftRadio{
             // position: absolute;

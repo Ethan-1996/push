@@ -2,10 +2,13 @@
   <div class="releaseContent">
     <p style="margin-bottom:10px " class="name">积分记录</p>
     <el-tabs v-model="activeName" @tab-click="handleClick">
+      <el-tab-pane label="充值" name="third" style="min-height:540px">
+        <RechargeContent :info="info" />
+      </el-tab-pane>
       <el-tab-pane label="充值记录" name="first" style="min-height:540px">
         <div style="margin-top:10px">
           <el-table :data="tableData" border style="width: 100%">
-            <el-table-column prop="pay_time" label="时间" width="155"></el-table-column>
+            <el-table-column prop="create_time" label="时间" width="155"></el-table-column>
             <el-table-column prop="order_no" label="订单号" width="150"></el-table-column>
             <el-table-column prop="goods_body" label="商品名称"></el-table-column>
             <el-table-column prop="order_amount" label="购买积分"></el-table-column>
@@ -17,7 +20,7 @@
               </template>
             </el-table-column>
             <el-table-column prop="total_amount" label="实付金额"></el-table-column>
-            <el-table-column label="发票管理">
+            <!-- <el-table-column label="发票管理">
               <template slot-scope="scope">
                 <span
                   v-if="scope.row.has_one_invoice == null"
@@ -29,7 +32,7 @@
                 <span v-else-if="scope.row.has_one_invoice.status == 3">已邮寄</span>
                 <span v-else-if="scope.row.has_one_invoice.status == 4">已签收</span>
               </template>
-            </el-table-column>
+            </el-table-column> -->
           </el-table>
 
           <!-- 分页部分 -->
@@ -98,7 +101,8 @@
             <template slot-scope="scope">
               <span v-show="scope.row.state == 1">预告</span>
               <span v-show="scope.row.state == 2">进行中</span>
-              <span v-show="scope.row.state == 3">无效</span>
+              <span v-show="scope.row.state == 4">无效</span>
+              <span v-show="scope.row.state == 3">已结束</span>
             </template>
           </el-table-column>
           <el-table-column prop="integral" label="消耗积分"></el-table-column>
@@ -116,9 +120,7 @@
         </div>
         <div class="blank"></div>
       </el-tab-pane>
-      <el-tab-pane label="充值" name="third">
-        <RechargeContent :info="info" />
-      </el-tab-pane>
+      
     </el-tabs>
   </div>
 </template>
@@ -135,7 +137,7 @@ export default {
   inject: ["reload"],
   data() {
     return {
-      activeName: "first",
+      activeName: "third",
       tableData: [],
       tableDataCost: [],
       totalCost: 1,
@@ -181,7 +183,7 @@ export default {
         if (res.data.code == 200) {
           this.tableData = res.data.data.data;
           this.total = res.data.data.total;
-          //console.log(res)
+          // console.log(res)
         } else {
           this.$message({
             showClose: true,
@@ -215,7 +217,45 @@ export default {
 };
 </script>
 
-
+<style lang="scss">
+.releaseContent{
+  .el-tabs__nav-wrap{
+    background: #3f9efd;
+  }
+  .el-tabs__nav-wrap::after{
+    width: 0;
+  }
+  .el-tabs__item{
+    color: #fff;
+    padding-left: 20px!important;
+    padding-right: 20px!important;
+    height: 27px;
+    margin: 10px;
+    line-height: 27px;
+  }
+  .el-tabs__item:hover{
+    color: #fff;
+  }
+  .is-active{
+    color: #f18e87;
+    background: #fff;
+    height: 27px;
+    margin: 10px;
+    line-height: 27px;
+    padding-left: 20px!important;
+    padding-right: 20px!important;
+    border-radius: 13.5px;
+  }
+  .is-active:hover{
+    color: #f18e87;
+    background: #fff;
+  }
+  .el-tabs__active-bar{
+    display: none;
+  }
+}
+  
+</style>
 <style lang="scss" scoped>
 .releaseContent {
   padding: 0 40px;

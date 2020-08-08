@@ -34,7 +34,9 @@ export default {
   },
   created(){
     getInfo(this.info)
+
     if(!getInfo(this.info)){
+      console.log(!getInfo(this.info))
       return false
     }
 

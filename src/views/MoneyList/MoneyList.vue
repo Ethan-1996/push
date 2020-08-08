@@ -32,7 +32,7 @@ export default {
   },
   created(){
     getInfo(this.info)
-    console.log(this.info)
+    // console.log(this.info)
     if(!getInfo(this.info)){
       return false
     }

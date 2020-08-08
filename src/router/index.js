@@ -5,7 +5,15 @@ Vue.use(VueRouter)
 
   const routes = [
     {
-      path: '/',       //首页 产品分析页面
+      path: '/',       //首页 
+      name: 'Home',
+      component: () => import('../views/Home/Home.vue'),
+      meta:{
+        keepAlive:true
+      }
+    },
+    {
+      path: '/Index',       // 产品分析页面
       name: 'Index',
       component: () => import('../views/Index/Index.vue'),
       meta:{
@@ -79,7 +87,7 @@ Vue.use(VueRouter)
     {                    //管理员
       path: '/Admin',
       name: 'Admin',
-      redirect: '/Admin/AdminList',
+      // redirect: '/Admin/AdminList',
       component: () => import('../views/Admin/Admin.vue'),
       children:[
        
@@ -169,10 +177,25 @@ Vue.use(VueRouter)
           name: 'Effect',
           component: () => import('../views/Admin/Shops/Effect.vue')
         },
-        {                    //商品列表
-          path: 'GoodList',
-          name: 'GoodList',
-          component: () => import('../views/Admin/Shops/GoodList.vue')
+        {                    //全部商品列表
+          path: 'AllGoodList',
+          name: 'AllGoodList',
+          component: () => import('../views/Admin/Goods/AllGoodList.vue')
+        },
+        {                    //待审核商品列表
+          path: 'GoodListToAudit',
+          name: 'GoodListToAudit',
+          component: () => import('../views/Admin/Goods/GoodListToAudit.vue')
+        },
+        {                    //审核成功商品列表
+          path: 'GoodListSuccess',
+          name: 'GoodListSuccess',
+          component: () => import('../views/Admin/Goods/GoodListSuccess.vue')
+        },
+        {                    //审核失败商品列表
+          path: 'GoodListFailed',
+          name: 'GoodListFailed',
+          component: () => import('../views/Admin/Goods/GoodListFailed.vue')
         },
         // 申诉部分 开始
         {                    //申诉列表
@@ -224,6 +247,18 @@ Vue.use(VueRouter)
           path: 'Platform',
           name: 'Platform',
           component: () => import('../views/Admin/Platform/Platform.vue')
+        },
+
+        // 类目部分
+        {                    //商品别名管理
+          path: 'CatLeafName',
+          name: 'CatLeafName',
+          component: () => import('../views/Admin/CatLeafName/CatLeafName.vue')
+        },
+        {                    //转化率管理
+          path: 'CatNameRatio',
+          name: 'CatNameRatio',
+          component: () => import('../views/Admin/CatNameRatio/CatNameRatio.vue')
         },
       ]
     },

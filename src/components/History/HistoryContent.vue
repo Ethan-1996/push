@@ -6,7 +6,8 @@
             <div class="states">
                 <el-link @click="getGoodsList(2,1)" :underline="false" :type="inlineType">当前在线商品({{inlineNum}})</el-link>
                 <el-link @click="getGoodsList(1,1)" :underline="false" :type="fuType">预告({{fuNum}})</el-link>
-                <el-link @click="getGoodsList(3,1)" :underline="false" :type="noType">无效商品({{noNum}})</el-link>
+                <el-link @click="getGoodsList(4,1)" :underline="false" :type="noType">失效商品({{noNum}})</el-link>
+                <el-link @click="getGoodsList(3,1)" :underline="false" :type="endType">已结束({{endNum}})</el-link>
             </div>
             <div class="search">
                 <!-- <el-autocomplete
@@ -16,8 +17,10 @@
                     @select="handleSelect"
                     suffix-icon="el-icon-search"
                 ></el-autocomplete> -->
-                <el-input placeholder="请输入店铺名/标题" v-model="searchInfo" size="small" style="margin-top:10px">
-                    <el-button slot="append" icon="el-icon-search" @click="search"></el-button>
+                <el-input placeholder="请输入标题/关键词" v-model="searchInfo" size="small" style="margin-top:10px">
+                    <el-button slot="append" @click="search">
+                        <img src="../../assets/images/search2.png" alt="">
+                    </el-button>
                 </el-input>
             </div>
         </div>
@@ -58,21 +61,30 @@ export default {
             return false
         }else{
             //获取数量
-            this.getStateNum()
-            this.getGoodsList(2,1)
+            
+
+            if(this.$route.query.type){
+                this.setState(this.$route.query.type)
+                this.getStateNum()
+                this.getGoodsList(this.$route.query.type,1)
+            }else{
+                this.getStateNum()
+                this.getGoodsList(2,1)
+            }
         }
 
-        getPlatform(this.info).then(res => {
-            if (res.data.code == 200) {
-                this.platformData = res.data.data
-            }else{
-                this.$message({
-                    showClose: true,
-                    message: res.data.msg,
-                    type: "error"
-                });
-            }
-        })
+        //  获取 平台类型 
+        // getPlatform(this.info).then(res => {
+        //     if (res.data.code == 200) {
+        //         this.platformData = res.data.data
+        //     }else{
+        //         this.$message({
+        //             showClose: true,
+        //             message: res.data.msg,
+        //             type: "error"
+        //         });
+        //     }
+        // })
        
     },
     data(){
@@ -83,15 +95,50 @@ export default {
             inlineType:"primary",
             fuType:"info",
             noType:"info",
+            endType:"info",
             inlineNum:"0",
             fuNum:"0",
             noNum:"0",
+            endNum:"0",
             searchInfo:"",   //搜索框内容
             platformData:[],
             pageShow:true,
         }
     },
     methods:{
+        setState(state){
+            switch (state) {
+                case 1:
+                    this.inlineType = "info"
+                    this.fuType = "primary"
+                    this.noType = "info"
+                    this.endType = "info"
+                    break;
+                case 2:
+                    this.inlineType = "primary"
+                    this.fuType = "info"
+                    this.noType = "info"
+                    this.endType = "info"
+                    break;
+                case 3:
+                    this.inlineType = "info"
+                    this.fuType = "info"
+                    this.noType = "info"
+                    this.endType = "primary"
+                    break;
+                case 4:
+                    
+                    this.inlineType = "info"
+                    this.fuType = "info"
+                    this.noType = "primary"
+                    this.endType = "info"
+                    break;
+                default:
+                    break;
+            }
+        },
+
+
         search(){
             let type = 0               // 判断是什么类型的商品
             if(this.inlineType == "primary"){
@@ -101,6 +148,9 @@ export default {
                 type = 1
             }
             if(this.noType == "primary"){
+                type = 4
+            }
+            if(this.endType == "primary"){
                 type = 3
             }
             this.getGoodsList(type,1,this.searchInfo)
@@ -115,31 +165,16 @@ export default {
                 if(res.data.code == 200){
                     this.inlineNum = res.data.data.conduct  //正在进行数量
                     this.fuNum = res.data.data.foresee     //预告数量
-                    this.noNum = res.data.data.invalid    //无效数量
+                    this.noNum = res.data.data.invalid_off    //无效数量
+                    this.endNum = res.data.data.invalid // 已结束数量
                 }
             })
 
         },
         getGoodsList(state,page,keywords){
-            switch (state) {
-                case 1:
-                    this.inlineType = "info"
-                    this.fuType = "primary"
-                    this.noType = "info"
-                    break;
-                case 2:
-                    this.inlineType = "primary"
-                    this.fuType = "info"
-                    this.noType = "info"
-                    break;
-                case 3:
-                    this.inlineType = "info"
-                    this.fuType = "info"
-                    this.noType = "primary"
-                    break;
-                default:
-                    break;
-            }
+
+            this.setState(state)
+
             let data = {
                 state,
                 page,
@@ -151,7 +186,7 @@ export default {
                 //循环添加一个 查看数量flag
                 
                 for(let i = 0;i < this.listInfo.length;i++){
-                     let element = []
+                    //  let element = []
                     //$set 触发试图更新
                     this.$set(this.listInfo[i],"checkNumFlag",true);
                    
@@ -160,18 +195,12 @@ export default {
                     //     element.push(this.listInfo[i].state_to_platform_web[index].id) 
                     // }
                     // this.$set(this.listInfo[i],"platformList",element);
-                    element = []
+                    // element = []
                 }
                 console.log(this.listInfo,"infofffffofofofofofofofofofo")
                 this.total = res.data.data.total
             })
 
-        },
-        querySearchAsync(queryString, cb) {   //搜索的函数 
-            console.log(queryString,cb);
-        },
-        handleSelect(item) {     //搜索的函数 
-            console.log(item);
         },
         handleCurrentChange(val) {    //切换 页码的函数
             let type = 0               // 判断是什么类型的商品
@@ -182,6 +211,9 @@ export default {
                 type = 1
             }
             if(this.noType == "primary"){
+                type = 4
+            }
+            if(this.endType == "primary"){
                 type = 3
             }
             this.getGoodsList(type,val,this.searchInfo)
@@ -193,7 +225,7 @@ export default {
 <style lang="scss">
     .goodsState{
         .el-link--inner{
-            margin-left: 30px;
+            margin:0 20px;
             line-height: 50px;
         }
         .el-input__inner{
@@ -205,6 +237,17 @@ export default {
         }
         .el-input__suffix{
             top: 5px;
+        }
+        .el-link--info,.el-link--info:hover{
+            color: #fff;
+            
+        }
+        .el-link--primary,.el-link--primary:hover{
+            color: #f18e87;
+            background: #fff;
+            height: 28px;
+            border-radius: 14px;
+            text-align: center;
         }
     }   
 </style>
@@ -224,12 +267,16 @@ export default {
         .goodsState{
             height: 60px;
             width: 1140px;
-            background: #eee;
-            margin:10px auto 8px;
+            background: #3399ff;
+            margin:10px auto 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
             font-size: 16px;
+            color: #666;
+            .states{
+                margin-left: 30px;
+            }
         }
         .search{
             margin-right: 25px;

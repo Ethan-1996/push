@@ -8,34 +8,35 @@
                 class="el-menu-vertical-demo"
                 active-text-color="#fff"
             >
-                <el-submenu index="1">
-                    <template slot="title">
-                        <img src="../../assets/images/goodsInfoIcon.png" alt="">
+                <!-- <el-submenu index="1"> -->
+                    <!-- <template slot="title">
+                        <img src="../../assets/images/goodsInfoIcon.png" class="icon" alt="">
                         <span>商品信息</span>
-                    </template>
+                    </template> -->
                     <el-menu-item-group>
                         <el-menu-item index="/">
-                            <img src="../../assets/images/indexIcon.png" alt="">
+                            <img src="../../assets/images/homeicon.png" alt="" class="icon">
+                            首页
+                        </el-menu-item>
+                        <el-menu-item index="/Index">
+                            <img src="../../assets/images/indexIcon.png" alt="" class="icon">
                             产品分析
                         </el-menu-item>
                         <el-menu-item index="/Release">
-                            <img src="../../assets/images/releaseIcon.png" alt="">
+                            <img src="../../assets/images/releaseIcon.png" alt="" class="icon">
                             发布产品
                         </el-menu-item>
                         <el-menu-item index="/History">
-                            <img src="../../assets/images/historyIcon.png" alt="">
+                            <img src="../../assets/images/historyIcon.png" alt="" class="icon">
                             历史记录
                         </el-menu-item>
                         <el-menu-item index="/Show">
-                            <img src="../../assets/images/showIcon.png" alt="">
+                            <img src="../../assets/images/showIcon.png" alt="" class="icon">
                             效果展示
                         </el-menu-item>
-                        <el-menu-item index="/PersonCenter">
-                            <img src="../../assets/images/personIcon.png" alt="">
-                            个人中心
-                        </el-menu-item>
+                        
                         <el-menu-item index="/Attention">
-                            <img src="../../assets/images/attentionIcon.png" alt="">
+                            <img src="../../assets/images/attentionIcon.png" alt="" class="icon">
                             我的关注
                         </el-menu-item>
                         <!-- <el-menu-item index="/Recharge">
@@ -44,15 +45,19 @@
                         </el-menu-item> -->
 
                         <el-menu-item index="/MoneyList">
-                            <img src="../../assets/images/indexIcon.png" alt="">
-                            积分记录
+                            <img src="../../assets/images/VIPIcon.png" alt="" class="icon">
+                            积分充值
+                        </el-menu-item>
+                        <el-menu-item index="/PersonCenter">
+                            <img src="../../assets/images/personIcon.png" alt="" class="icon">
+                            我的店铺
                         </el-menu-item>
                         <!-- <el-menu-item index="/InvoiceList">
                             <i class="el-icon-set-up"></i>
                             发票管理
                         </el-menu-item> -->
                     </el-menu-item-group>
-                </el-submenu>
+                <!-- </el-submenu> -->
                 <!-- <el-submenu index="2">
                     <template slot="title">
                         <i class="el-icon-setting"></i>
@@ -81,16 +86,34 @@ export default {
 }
 </script>
 <style lang="scss">
+.tac{
+    position: sticky;
+    top: 10px;
+}
+.el-menu-item-group__title{
+   border-radius: 10px 0 0 10px;
+}
+.el-menu-item{
+    padding-left: 36px!important;
+}
+.el-menu{
+    overflow: hidden;
+}
 .el-menu-item.is-active {
    background-color: #3991e9 !important;
 }
 </style>
 <style lang="scss" scoped>
     .tabbar{
+        padding-top: 10px;
         width: 180px;
         background: #fff;
         border-radius: 10px 0 0 10px;
-        overflow: hidden;
+        // overflow: hidden;
         margin-right: 20px;
+        .icon{
+            margin-right: 10px;
+            margin-bottom: 3px;
+        }
     }
 </style>

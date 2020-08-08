@@ -511,9 +511,9 @@ export function getBusinessAll(data,info) {
 const getGoodsListUrl= Header + '/admin/Goods/getGoodsList'; // 获取 商品列表
 export function getGoodsList(data,info) {
   return request({
-    params:data,
+    data:data,
     url: getGoodsListUrl,
-    method: 'get',
+    method: 'post',
     headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
   })
 }
@@ -563,6 +563,19 @@ export function editDelete(data,info) {
 }
 
 
+const reviewUrl= Header + '/admin/Goods/review'; // 审核商品
+export function review(data,info) {
+  return request({
+    params:data,
+    url: reviewUrl,
+    method: 'get',
+    headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
+  })
+}
+
+
+
+
 const getAppealListUrl= Header + '/admin/Appeal/getAppealList'; // 获取申诉列表
 export function getAppealList(data,info) {
   return request({
@@ -590,6 +603,17 @@ export function appealFail(data,info) {
   return request({
     params:data,
     url: appealFailUrl,
+    method: 'get',
+    headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
+  })
+}
+
+
+const deletePlatformWebGoodsUrl= Header + '/admin/Goods/deletePlatformWeb'; // 获取平台
+export function deletePlatformWebGoods(data,info) {
+  return request({
+    params:data,
+    url: deletePlatformWebGoodsUrl,
     method: 'get',
     headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
   })
@@ -760,15 +784,15 @@ export function deletePlatform(data,info) {
 
 
 
-const addPlatformWebUrl= Header + '/admin/Platformweb/addPlatformWeb'; // 添加平台
-export function addPlatformWeb(data,info) {
-  return request({
-    data:data,
-    url: addPlatformWebUrl,
-    method: 'post',
-    headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
-  })
-}
+// const addPlatformWebUrl= Header + '/admin/Platformweb/addPlatformWeb'; // 添加平台
+// export function addPlatformWeb(data,info) {
+//   return request({
+//     data:data,
+//     url: addPlatformWebUrl,
+//     method: 'post',
+//     headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
+//   })
+// }
 
 
 const getPlatformWebUrl= Header + '/admin/Platformweb/getPlatformWeb'; // 获取平台
@@ -797,6 +821,99 @@ export function deletePlatformWeb(data,info) {
   return request({
     params:data,
     url: deletePlatformWebUrl,
+    method: 'get',
+    headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
+  })
+}
+
+
+// 2020.8.1 新增  商品类目管理
+
+
+const getCatLeafNameListUrl= Header + '/admin/Catleafname/getCatLeafNameList'; // 类目管理
+export function getCatLeafNameList(data,info) {
+  return request({
+    params:data,
+    url: getCatLeafNameListUrl,
+    method: 'get',
+    headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
+  })
+}
+
+
+const addSonUrl= Header + '/admin/Catleafname/addSon'; // 新增二级类目 别名
+export function addSon(data,info) {
+  return request({
+    data:data,
+    url: addSonUrl,
+    method: 'post',
+    headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
+  })
+}
+
+const editSonUrl= Header + '/admin/Catleafname/editSon'; // 修改 更正 二级类目 别名
+export function editSon(data,info) {
+  return request({
+    data:data,
+    url: editSonUrl,
+    method: 'post',
+    headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
+  })
+}
+
+const deleteSonUrl= Header + '/admin/Catleafname/deleteSon'; // 删除二级类目 别名
+export function deleteSon(data,info) {
+  return request({
+    data:data,
+    url: deleteSonUrl,
+    method: 'post',
+    headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
+  })
+}
+
+
+/// 转化率部份 
+
+const getCatNameRatioListUrl= Header + '/admin/Catnameratio/getCatNameRatioList'; // 获取 转化率列表
+export function getCatNameRatioList(data,info) {
+  return request({
+    params:data,
+    url: getCatNameRatioListUrl,
+    method: 'get',
+    headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
+  })
+}
+
+
+const addEditCatNameRatioUrl= Header + '/admin/Catnameratio/addEditCatNameRatio'; // 修改 转化率
+export function addEditCatNameRatio(data,info) {
+  return request({
+    params:data,
+    url: addEditCatNameRatioUrl,
+    method: 'get',
+    headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
+  })
+}
+
+
+// 更改平台类型时的 二维数组 
+export function addPlatformWeb(data,info) {
+  return request({
+    url:Header + `/admin/Goods/addPlatformWeb` + data,
+    method: 'get',
+    headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
+  })
+}
+
+
+
+
+//获取某个商品已上传的平台
+const getPlatformWebGoodsUrl= Header + '/admin/Goods/getPlatformWeb'; 
+export function getPlatformWebGoods(data,info) {
+  return request({
+    params:data,
+    url: getPlatformWebGoodsUrl,
     method: 'get',
     headers:{"admin-info":info.admin_info,"admin-id":info.admin_id}
   })

@@ -21,6 +21,23 @@
 export default {
     name:"PageTop",
     inject:['reload'],
+    watch:{
+        $route(){
+            this.accessToken = localStorage.getItem('accessToken')
+        if(this.accessToken){
+            this.name = localStorage.getItem('phone')
+            this.notLogged = false
+        }else{
+            this.accessToken = sessionStorage.getItem('accessToken')
+            if(this.accessToken){
+                this.name = sessionStorage.getItem('phone')
+                this.notLogged = false
+            }else{
+                this.notLogged = true
+            }
+        } 
+        }
+    },
     data(){
         return {
             name:"",
@@ -62,7 +79,9 @@ export default {
             sessionStorage.removeItem('accessToken')
             sessionStorage.removeItem('user_id')
             sessionStorage.removeItem('phone')
-            this.reload()
+            // this.reload()
+            location.reload()
+            // this.topath("Login")
         },
         topath(path){
             this.$router.push(path)

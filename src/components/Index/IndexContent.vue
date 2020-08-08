@@ -71,7 +71,7 @@
         </el-dialog>
 
 <!-- 展示部分 的 数据  对话框  -->
-        <el-dialog title="查看竞品数据" :visible.sync="dialogFormVisible2" width="80%" top="5%">
+        <el-dialog title="查看竞品数据" :visible.sync="dialogFormVisible2" width="70%" top="3%">
            <AddEchart :xData="xData" :changeFlagEchart="changeFlagEchart"/>
            <AddEchartLine :xDataLine="xDataLine" :yDataLine="yDataLine" :yDataLinePrice="yDataLinePrice" :yDataLineM="yDataLineM" />
             <span slot="footer" class="dialog-footer">
@@ -83,7 +83,7 @@
         </el-dialog>
         <!-- 分割线 -->
         <div class="divider divider2" style="margin-top:0">
-            <el-divider content-position="center">最佳方案预估</el-divider>
+            <el-divider content-position="center">竞品历史方案销额</el-divider>
         </div>
         <!-- 方案部分 -->
         <Program :extensionInfo="extensionInfo" />
@@ -473,13 +473,16 @@ export default {
         .el-radio-button__inner{
             padding:10px 12px;
         }
-        .el-input__inner{
-            width: 520px;
-            border: 3px solid #3399ff;
-            height: 44px;
-            margin-left: 40px;
-            font-size: 20px;
+        .contentSeach{
+            .el-input__inner{
+                width: 520px;
+                border: 3px solid #3399ff;
+                height: 44px;
+                margin-left: 40px;
+                font-size: 20px;
+            }
         }
+        
         .el-button .el-button--default{
             width: 210px;
         }
@@ -518,7 +521,7 @@ export default {
             position: relative;
             .moreinfo{
                 position: absolute;
-                top: 80px;
+                // top: 80px;
                 right: 30px;
             }
         }
