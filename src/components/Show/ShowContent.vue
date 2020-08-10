@@ -51,9 +51,7 @@ export default {
         }
     },
     created(){
-        // console.log(this.info.user_info)
         if (!this.info.user_info) {
-            console.log(11212121212121)
             return false
         }else{
            if(this.$route.query.id){
@@ -87,7 +85,6 @@ export default {
 
                     //echarts 的数据
                     this.formatDay(res.data.data.sales_volume)  //默认数据 
-                    console.log(res,888888888888888888)
                     
                 }else{
                     this.$message({

@@ -105,17 +105,6 @@ export default {
                 this.pageShow = true
             })
         },
-        // getStateNum(){    //获取 各个状态 数量的 函数 传给子组件 
-        //     getStateNum(this.info).then(res => {
-        //         console.log(res,"whwhwhwhhwhwhwhwhwh")
-        //         if(res.data.code == 200){
-        //             this.inlineNum = res.data.data.conduct  //正在进行数量
-        //             this.fuNum = res.data.data.foresee     //预告数量
-        //             this.noNum = res.data.data.invalid    //无效数量
-        //         }
-        //     })
-
-        // },
         getGoodsList(state,page,keywords){
             switch (state) {
                 case 1:
@@ -151,7 +140,6 @@ export default {
                 keywords,
             }
             getGoodsList(data,this.info).then(res => {
-                console.log(res)
                 this.listInfo = res.data.data.data
                 //循环添加一个 查看数量flag
                 
@@ -165,7 +153,6 @@ export default {
                     }
                     this.$set(this.listInfo[i],"platformList",element);
                     element = []                }
-                //console.log(this.listInfo,"infofffffofofofofofofofofofo")
                 this.total = res.data.data.total
             })
 

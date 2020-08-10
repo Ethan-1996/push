@@ -2,6 +2,9 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 
+
+
+
 //引入重置样式文件
 import './stylesheets/reset.css';
 
@@ -13,9 +16,10 @@ import md5 from 'js-md5';
 Vue.prototype.$md5 = md5;
 
 
-// const Header = "http://tlt.yanxuandan.com"
 
-const Header = "/api"
+const Header = "http://www.taoliutui.com"
+
+// const Header = "/api"
 Vue.prototype.$header = Header;
 
 Vue.use(ElementUI);

@@ -99,7 +99,6 @@ export default {
     awaitPhones(page) {
       awaitPhones(this.info).then(res => {
         if (res.data.code == 200) {
-          console.log(res);
           this.tableData = res.data.data;
         } else {
           this.$message({
@@ -114,7 +113,6 @@ export default {
       this.title = title
       getOnePhoneLog({ al_id: id }, this.info).then(res => {
         if (res.data.code == 200) {
-          console.log(res);
           this.activities = res.data.data;
         } else {
           this.$message({

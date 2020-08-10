@@ -18,6 +18,7 @@
                         <span>数据总览</span>
                         <!-- <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button> -->
                     </div>
+                    <p style="margin:5px 0">本品所在类目共</p>
                     <p>有 <span style="color:red">{{shops}}</span> 个商家 推广过</p>
                     <p style="margin:5px 0">有 <span style="color:red">{{goods}}</span> 个商品 推广过</p>
                 </el-card>
@@ -43,7 +44,8 @@
                     :shopName="item.nick" 
                     :title="item.title" 
                     :is_attention="item.is_attention" 
-                    :attention_goods_id="item.attention_goods_id" 
+                    :attention_goods_id="item.attention_goods_id"
+                    :item_url="item.item_url" 
                     :token="info"
                     :chnageData="changeData"/>
             </div>
@@ -73,6 +75,9 @@
 <!-- 展示部分 的 数据  对话框  -->
         <el-dialog title="查看竞品数据" :visible.sync="dialogFormVisible2" width="70%" top="3%">
            <AddEchart :xData="xData" :changeFlagEchart="changeFlagEchart"/>
+           <div class="divider divider2">
+                <el-divider content-position="center">竞品数据</el-divider>
+            </div>
            <AddEchartLine :xDataLine="xDataLine" :yDataLine="yDataLine" :yDataLinePrice="yDataLinePrice" :yDataLineM="yDataLineM" />
             <span slot="footer" class="dialog-footer">
                 <el-button v-if="taokeyi_goods_id && is_attention == 2" @click="attention">关 注</el-button>
@@ -235,7 +240,6 @@ export default {
         addmore(){
             checkCompeteGoods(this.form,this.info).then(res => {
                 if (res.data.code == 200) {
-                    // console.log(res.data.data)
 
                     this.formatAddEchartInfo(res.data.data.proportion)
 
@@ -282,7 +286,6 @@ export default {
                 this.extensionInfo[i].commission = parseInt(this.extensionInfo[i].commission)
                 this.extensionInfo[i].icon = iconArray[i]
             }
-            console.log(this.extensionInfo,"hahahahhahahahahhahaha")
         },
 
         formatSelfInfo(info){
@@ -296,7 +299,6 @@ export default {
                 this.yAxisDataSelf.push(info[i].sale)
                 this.xAxisDataSelf.push(info[i].time)
             }
-            //console.log(this.yAxisDataSelfM)
         },
 
         //整理 单品 效果展示
@@ -340,7 +342,6 @@ export default {
                 this.yDataLine.push(info[i].sale)
                 this.xDataLine.push(info[i].time)
             }
-            //console.log(this.yDataLineM)
         },
 
         // 换一换
@@ -391,7 +392,6 @@ export default {
                 customClass: 'create-isLoading',
             });                                       // 全屏幕遮罩层
             goodsIndex(data,this.info).then(res => {
-                console.log("newwwwwwww",res)
                 if(res.data.code == 200){          //请求成功数据  转换数据 给 子组件
 
                     this.shops = res.data.data.shop_num

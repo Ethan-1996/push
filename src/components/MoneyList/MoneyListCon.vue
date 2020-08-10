@@ -183,7 +183,6 @@ export default {
         if (res.data.code == 200) {
           this.tableData = res.data.data.data;
           this.total = res.data.data.total;
-          // console.log(res)
         } else {
           this.$message({
             showClose: true,
@@ -197,7 +196,6 @@ export default {
     send() {
       addInvoice(this.form, this.info).then(res => {
         if (res.data.code == 200) {
-          console.log(res);
           this.$message({
             showClose: true,
             message: res.data.msg,

@@ -83,15 +83,6 @@
       </el-table-column>
       <el-table-column label="上传平台" width="90">
         <template slot-scope="scope">
-          <!-- <el-checkbox-group v-model="scope.row.platformList">
-            <el-checkbox
-              v-for="item in platformData"
-              :key="item.id"
-              :label="item.id"
-              disabled
-              style="display:block"
-            >{{item.platform}}</el-checkbox>
-          </el-checkbox-group>-->
           <el-popover
             placement="right-start"
             title="已上传平台"
@@ -211,7 +202,6 @@ export default {
   },
   created() {
     getPlatformWeb(this.info).then((res) => {
-      console.log(res);
       if (res.data.code == 200) {
         this.platformData = res.data.data;
       }
@@ -304,7 +294,6 @@ export default {
       })
         .then(() => {
           review({ id, user_id, upper_lower: 2 }, this.info).then((res) => {
-            // console.log(res,"kkkkkkkkkkkkkkkkkkk")
             if (res.data.code == 200) {
               this.$message({
                 type: "success",
@@ -321,7 +310,6 @@ export default {
         })
         .catch(() => {
           review({ id, user_id, upper_lower: 3 }, this.info).then((res) => {
-            // console.log(res,"kkkkkkkkkkkkkkkkkkk")
             if (res.data.code == 200) {
               this.$message({
                 type: "success",
@@ -355,7 +343,6 @@ export default {
     getSingleGoods(id, user_id) {
       getSingleGoods({ id, user_id }, this.info).then((res) => {
         if (res.data.code == 200) {
-          console.log(res.data);
           this.format(res.data.data);
         } else {
           this.$message({
@@ -373,7 +360,6 @@ export default {
         coupon_activity_id,
       };
       getCoupon(data, this.info).then((res) => {
-        console.log(res, "resgsgsgsggsgggggggggggggggg");
         if (res.data.code == 404) {
           //  404 表示  过期了  就  显示 list 中的 数据
           for (let i = 0; i < this.listInfo.length; i++) {
@@ -408,7 +394,6 @@ export default {
             user_id,
           };
           editLower(data, this.info).then((res) => {
-            // console.log(res,"kkkkkkkkkkkkkkkkkkk")
             if (res.data.code == 200) {
               for (let i = 0; i < this.listInfo.length; i++) {
                 //更新 成功后 更改试图

@@ -197,7 +197,6 @@ export default {
   },
   //调用
   mounted() {
-    //console.log(this.yAxisDataSelfM,"12121212")
     this.$nextTick(function() {
       this.drawPie("mainSelf");
     });

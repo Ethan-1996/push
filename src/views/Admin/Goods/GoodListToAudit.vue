@@ -128,7 +128,6 @@ export default {
                 upper_lower
             }
             getGoodsList(data,this.info).then(res => {
-                console.log(res)
                 this.listInfo = res.data.data.data
                 //循环添加一个 查看数量flag
                 
@@ -142,7 +141,6 @@ export default {
                     }
                     this.$set(this.listInfo[i],"platformList",element);
                     element = []                }
-                //console.log(this.listInfo,"infofffffofofofofofofofofofo")
                 this.total = res.data.data.total
             })
 

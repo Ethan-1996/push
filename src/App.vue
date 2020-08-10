@@ -28,22 +28,6 @@ export default {
     }
   },
   created(){
-    // window.addEventListener('message', function(event) {
-    //   // if (event.origin === 'https://domain2.com') {
-    //   //   const { key } = event.data;
-    //   //   const value = localStorage.getItem(key);
-    //   //   event.source.postMessage({wallets: wallets}, event.origin);
-    //   // }
-    //     console.log(event)
-    //     if(event.origin == 'https://item.taobao.com/'){
-    //       console.log(event)
-    //       const { key } = event.data;
-    //       const value = localStorage.getItem(key);
-    //       event.source.postMessage({"wallets": value}, event.origin);
-
-    //     }
-
-    // }, false)
   },
   methods:{
     reload(){

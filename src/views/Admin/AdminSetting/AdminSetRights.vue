@@ -75,7 +75,6 @@ export default {
 
       getAdminInfo(this.info)
         getAdminAllRoleTree(this.info).then(res => {
-            //console.log(res)
             if(res.data.code == 200){
                 this.data = res.data.data
             }
@@ -101,7 +100,6 @@ export default {
                         Nodes.push({"id":this.arr[i]})
                     }
                     
-                    //console.log(this.arr)
                     this.setCheckedNodes(Nodes)
                 }else{
                     this.$message({   
@@ -123,7 +121,6 @@ export default {
             this.$refs.tree.setCheckedKeys([]);
         },
          getCheckedNodes() {
-            console.log(this.$refs.tree.getCheckedNodes(false,true));
             let data = this.$refs.tree.getCheckedNodes(false,true)
             let role_id = []
             for(let i = 0;i<data.length;i++){

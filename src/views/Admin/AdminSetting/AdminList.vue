@@ -211,10 +211,8 @@ export default {
        handleCurrentChange(val) {
             this.page = val
             this.getAdminList(this.page,{username:this.searchName,phone:this.searchPhone})
-            //console.log(`当前页: ${val}`);
       },
       change(item){
-          //console.log(item)
           this.form.username = item.username
           this.form.phone = item.phone
           this.form.id = item.id    

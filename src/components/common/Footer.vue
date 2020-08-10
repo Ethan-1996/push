@@ -29,7 +29,8 @@
           </div>
       </div>
       <div class="important">
-          ©CopyRight 2011-2020 | 大淘客联盟 dataole.com | 蜀ICP备15025833号 | 增值电信业务经营许可证：川B2-20170282 | 营业执照 | <i class=""></i> 川公网安备51019002002469号 <img src="" alt="" style="width:60px;height:20px">
+          ©CopyRight 2011-2020 | 淘流推联盟 taoliutui.com | 鲁ICP备17019616号 
+          
       </div>
   </div>
 </template>

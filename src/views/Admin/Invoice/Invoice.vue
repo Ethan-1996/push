@@ -131,7 +131,6 @@ export default {
   },
   methods: {
       handleClick(tab, event) {
-        //console.log(tab, event);
         let data = {
             status:tab.name,
             page:1,
@@ -143,7 +142,6 @@ export default {
       getInvoiceListAd(data){
           getInvoiceListAd(data,this.info).then(res => {
               if(res.data.code == 200){
-                  console.log(res)
                   this.tableData = res.data.data.data
                   this.total = res.data.data.total 
               }else{

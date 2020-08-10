@@ -52,7 +52,7 @@
           </el-form-item>
           <el-form-item label="拍:">
             <div class="small">
-              <el-input v-model="howMany" placeholder="1" type="number" @change="changeMany">
+              <el-input v-model="howMany" placeholder="请填写件数" type="number" @change="changeMany">
                 <template slot="append">件</template>
               </el-input>
             </div>
@@ -78,11 +78,11 @@
       </div>
       <div class="attention" v-show="!stepFlag">
         <h2>温馨提示：</h2>
-        <p>1、开券日期不能超过7天。</p>
-        <p>2、产品链接不能重复上传。</p>
-        <p>3、店铺动态评分不低于4.7。</p>
-        <p>4、部分淘宝店同行中不占优势。</p>
-        <p class="red">5、天猫店铺基础销量不低于15，评价不低于5；淘宝 店铺80，评价20。</p>
+        <p>1.开券日期不能超过7天，否则无法上传平台。</p>
+        <p>2.平台已有产品链接不能重复上传。</p>
+        <p>3.店铺动态评分不低于4.7。</p>
+        <p>4.部分店铺同行中不占优势（差评多、店铺权重低、评分低等）</p>
+        <p class="red">5.天猫店铺产品链接基础销量不低于15，评价不低于5；淘宝店铺80，评价20。</p>
       </div>
       <el-button
         @click="sendInfo"
@@ -116,7 +116,7 @@ export default {
         coupon_end_time: "",
         coupon_amount:""
       },
-      howMany:"",
+      howMany:"1",
       formTop: {
         goods_url: "",
         coupon_url: ""
@@ -163,7 +163,6 @@ export default {
         goods_url: this.formTop.goods_url
       };
       checkCoupon(data, this.info).then(res => {
-        console.log("newwwwwwww", res);
         if (res.data.code == 200) {
           //请求成功数据  转换数据 给 子组件
           
@@ -176,7 +175,6 @@ export default {
           this.checkCouponFlag = false; // 节流 button 取消禁用
           this.sendFlag = false;
           this.stepFlag = true
-          console.log(this.form);
         } else {
           this.$message({
             message: res.data.msg,
@@ -217,7 +215,6 @@ export default {
                 buy_num:this.howMany
               };
               saveGoodsCoupon(data, this.info).then(res => {
-                console.log("newwwwwwww", res);
                 if (res.data.code == 200) {
                   //请求成功数据  转换数据 给 子组件
                   this.$message({

@@ -70,6 +70,9 @@
 
       <el-dialog title="关注竞品数据" :visible.sync="dialogFormVisible" width="70%" top="3%">
         <AddEchart :xData="xData"  />
+        <div class="divider divider2">
+                <el-divider content-position="center">竞品数据</el-divider>
+            </div>
         <AddEchartLine
           :xDataLine="xDataLine"
           :yDataLine="yDataLine"
@@ -133,15 +136,6 @@ export default {
         },
 
 
-    //   整理 新加的  第一个 图标搜狐据
-    // formatAddEchartInfo(info) {
-    //   this.yData = [];
-    //   this.xData = [];
-    //   for (var i = 0; i < info.length; i++) {
-    //     this.yData.push(info[i].proportion);
-    //     this.xData.push(info[i].price + " | " + info[i].commission);
-    //   }
-    // },
     //   整理 新加的  第二个 图标搜狐据
     formatAddLineInfo(info) {
       this.yDataLinePrice = [];
@@ -154,14 +148,12 @@ export default {
         this.yDataLine.push(info[i].sale);
         this.xDataLine.push(info[i].time);
       }
-      //console.log(this.yDataLineM)
     },
 
     // 查看数据
     check(id) {
       getAttentionExtension({ id }, this.info).then(res => {
         if (res.data.code == 200) {
-          console.log(res);
           this.formatAddEchartInfo(res.data.data.proportion);
 
           this.formatAddLineInfo(res.data.data.extension);
@@ -181,7 +173,6 @@ export default {
     // 获取 关注列表
     getAttention(page) {
       getAttention({ page }, this.info).then(res => {
-        console.log(res);
         if (res.data.code == 200) {
           this.list = res.data.data.data;
           this.total = res.data.data.total;
@@ -202,7 +193,6 @@ export default {
       })
         .then(() => {
           cancelAttention({ id }, this.info).then(res => {
-            // console.log(res,"kkkkkkkkkkkkkkkkkkk")
             if (res.data.code == 200) {
               for (let i = 0; i < this.list.length; i++) {
                 //更新 成功后 更改试图
@@ -268,5 +258,10 @@ export default {
     width: 100%;
     height: 70px;
   }
+  .divider{
+            width: 1010px;
+            margin: auto;
+            margin-top: 48px;
+        }
 }
 </style>

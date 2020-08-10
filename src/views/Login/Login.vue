@@ -1,15 +1,32 @@
 <template>
   <div class="Register">
       <div class="info">
-        <p class="heng"></p>
-        <p class="logtext">登录</p>
+        <!-- <p class="heng"></p>
+        <p class="logtext">登录</p> -->
+        <img src="../../assets/images/indexLogo.png" alt="" style="margin-bottom:20px">
+        <!-- <p class="logtext">登录</p> -->
             <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="0px" @submit.native.prevent>
-                <el-form-item label="" prop="nick">
+                <!-- <el-form-item label="" prop="nick">
                     <el-input v-model="ruleForm.nick" autocomplete="off" placeholder="请输入店铺名" prefix-icon="el-icon-postcard"></el-input>
-                </el-form-item>
+                </el-form-item> -->
 
                 <el-form-item label="" prop="phone">
-                    <el-input v-model="ruleForm.phone" autocomplete="off" placeholder="请输入手机号码" prefix-icon="el-icon-postcard"></el-input>
+                    <el-input v-model="ruleForm.phone" autocomplete="off" placeholder="请输入手机号码" prefix-icon="el-icon-postcard" @change.native="getphone()"></el-input>
+                </el-form-item>
+
+                <el-form-item label="" prop="nick">
+                    <el-select v-model="ruleForm.nick" placeholder="请选择店铺">
+                        <template slot="prefix">
+                            <i class="el-icon-c-scale-to-original" style="line-height: 64px;font-size: 22px;margin-left: 2px;"></i>
+                        </template>
+                        <el-option
+                        v-for="item in shopList"
+                        :key="item"
+                        :label="item"
+                        :value="item">
+                        <span style="float: left">{{ item }}</span>
+                        </el-option>
+                    </el-select>
                 </el-form-item>
                 
                 <el-form-item label="" prop="password">
@@ -29,7 +46,7 @@
 
 <script>
 import axios from 'axios';
-import {checkUser} from '@/api/api.js';
+import {checkUser,getNickByPhe} from '@/api/api.js';
 export default {
     data(){
         return {
@@ -40,9 +57,9 @@ export default {
                 nick:""
             },
             rules:{
-                nick:[
-                    { required: true, message: '请输入店铺名', trigger: 'blur' },
-                ],
+                // nick:[
+                //     { required: true, message: '请输入店铺名', trigger: 'blur' },
+                // ],
                 phone: [
                     { required: true, message: '请输入电话号码', trigger: 'blur' },
                 ],
@@ -50,13 +67,28 @@ export default {
                     { required: true, message: '请输入密码', trigger: 'blur' },
                     { min: 6, max: 18, message: '长度在 6 到 18 个字符', trigger: 'blur' }
                 ],
-            }
+            },
+            shopList:[]
+
         }
     },
     created(){
 
     },
     methods:{
+        getphone(){
+            getNickByPhe({phone:this.ruleForm.phone}).then(res => {
+                if (res.data.code == 200) {
+                    this.shopList = res.data.data
+                }else{
+                    this.$message({   
+                        showClose: true,
+                        message: res.data.msg,
+                        type: 'error'
+                    });
+                }
+            })
+        },
         toFind(){
             this.$router.push("/Find")
         },
@@ -79,7 +111,6 @@ export default {
                         nick:this.ruleForm.nick
                     }
                     checkUser(data).then(res => {
-                        console.log("ressssssssssss",res)
                         if(res.data.code == 200){
                             this.$confirm('您已成功登录，是否保存用户信息用于下次登录?', '提示', {
                                 confirmButtonText: '是',
@@ -170,10 +201,11 @@ export default {
             background: #57b4fa;
         }
         .logtext{
-            font-size: 40px;
+            font-size: 20px;
             font-weight: 800;
-            margin-top: 30px;
-            margin-bottom: 60px;
+            margin-top: 10px;
+            margin-bottom: 30px;
+            color: #555;
         }
     }
     .small{

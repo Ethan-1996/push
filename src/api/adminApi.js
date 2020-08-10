@@ -1,10 +1,9 @@
 import request from '@/utils/request'
 
 
-// const Header = "http://business.com"
-// const Header = "http://tlt.yanxuandan.com"
+const Header = "http://www.taoliutui.com"
 
-const Header = "/api"
+// const Header = "/api"
 
 // const IndexUrl= Header + '/index/Login/sendCode'; //发送手机验证码
 // export function sendCode(query) {

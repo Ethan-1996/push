@@ -1,17 +1,24 @@
 import request from '@/utils/request'
 
 
-// const Header = "http://business.com"
-// const Header = "http://tlt.yanxuandan.com"
+const Header = "http://www.taoliutui.com"
 
-const Header = "/api"
-
+// const Header = "/api"
 
 
+const getNickByPheUrl= Header + '/index/Login/getNickByPhe'; //通过手机号获取店铺名字
+export function getNickByPhe(query) {
+  return request({
+    params:query,
+    url: getNickByPheUrl,
+    method: 'get'
+  })
+}
 
 
 
-const indexUrl= Header + '/index/Homepage/index'; //发送手机验证码
+
+const indexUrl= Header + '/index/Homepage/index'; //获取首页数据
 export function index(info) {
   return request({
     url: indexUrl,

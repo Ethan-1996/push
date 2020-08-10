@@ -38,7 +38,6 @@ export default {
 
       getAccountInfo(this.info).then(res => {
           if (res.data.code == 200) {
-          console.log(res);
           this.formLabelAlign = res.data.data;
         } else {
           this.$message({

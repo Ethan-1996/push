@@ -104,7 +104,6 @@ export default {
       // 获取后 执行的函数
       getAfter(res,index){
         if(res.data.code == 200){
-          //console.log(res)
           if(res.data.data){
             this.tableData[index].num = res.data.data.integral
             this.tableData[index].show = false
@@ -115,13 +114,11 @@ export default {
         }else{
           this.tableData[index].num = "请先设置" 
           this.tableData[index].show = true
-          //console.log(res)
         }
       },
 
       // 点修改时 走的函数
       change(id){
-        //console.log(id)
         this.form.id = id 
         this.form.integral = this.tableData[id - 1].num
         

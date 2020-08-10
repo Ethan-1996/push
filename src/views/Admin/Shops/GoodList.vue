@@ -9,13 +9,6 @@
                 <el-link @click="getGoodsList(3,1)" :underline="false" :type="noType">无效商品</el-link>
             </div>
             <div class="search">
-                <!-- <el-autocomplete
-                    v-model="searchInfo"
-                    :fetch-suggestions="querySearchAsync"
-                    placeholder="请输入内容"
-                    @select="handleSelect"
-                    suffix-icon="el-icon-search"
-                ></el-autocomplete> -->
                 <el-input placeholder="请输入店铺名/标题" v-model="searchInfo" size="small" style="margin-top:10px">
                     <el-button slot="append" icon="el-icon-search" @click="search"></el-button>
                 </el-input>
@@ -99,17 +92,6 @@ export default {
                 this.pageShow = true
             })
         },
-        // getStateNum(){    //获取 各个状态 数量的 函数 传给子组件 
-        //     getStateNum(this.info).then(res => {
-        //         console.log(res,"whwhwhwhhwhwhwhwhwh")
-        //         if(res.data.code == 200){
-        //             this.inlineNum = res.data.data.conduct  //正在进行数量
-        //             this.fuNum = res.data.data.foresee     //预告数量
-        //             this.noNum = res.data.data.invalid    //无效数量
-        //         }
-        //     })
-
-        // },
         getGoodsList(state,page,keywords){
             switch (state) {
                 case 1:
@@ -136,7 +118,6 @@ export default {
                 keywords
             }
             getGoodsList(data,this.info).then(res => {
-                console.log(res)
                 this.listInfo = res.data.data.data
                 //循环添加一个 查看数量flag
                 
@@ -150,7 +131,6 @@ export default {
                     }
                     this.$set(this.listInfo[i],"platformList",element);
                     element = []                }
-                //console.log(this.listInfo,"infofffffofofofofofofofofofo")
                 this.total = res.data.data.total
             })
 

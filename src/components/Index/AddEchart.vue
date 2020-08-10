@@ -1,6 +1,9 @@
 <template>
   <!--为echarts准备一个具备大小的容器dom-->
-  <div id="mainAdd"></div>
+  <div class="box">
+    <div id="mainAdd"></div>
+    <p style="text-align:center">竞品历史方案占比</p>
+  </div>
 </template>
 <script>
 import echarts from "echarts";
@@ -20,7 +23,7 @@ export default {
         title: {
           text: "单品占比分析",
           left: "center",
-          top: 20,
+          top: 0,
           textStyle: {
             color: "#999",
           },
@@ -140,7 +143,7 @@ export default {
 <style lang="scss" scoped>
 #mainAdd {
   width: 1000px;
-  height: 250px;
+  height: 260px;
   margin: auto;
 }
 </style>

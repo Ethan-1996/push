@@ -89,7 +89,6 @@ export default {
     getCatNameRatioList(data) {
       getCatNameRatioList(data, this.info).then((res) => {
         if (res.data.code == 200) {
-          console.log(res);
           this.tableData = res.data.data.data;
           this.total = res.data.data.total;
         } else {

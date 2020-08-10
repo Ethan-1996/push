@@ -152,7 +152,6 @@ export default {
     },
     methods: {
       handleClick(tab, event) {
-        //console.log(tab, event);
         let data = {
             state:tab.name,
             page:1,

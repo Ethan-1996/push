@@ -118,7 +118,6 @@ export default {
     // 获取本月数据
     bnRegistMonthNum(this.info).then(res => {
       if (res.data.code == 200) {
-        //console.log(res);
         this.formatMonth(res.data.data);
       } else {
         this.$message({
@@ -189,7 +188,6 @@ export default {
     getYearData() {
       bnRegistMonthNumHt({ year: this.year }, this.info).then(res => {
         if (res.data.code == 200) {
-          console.log(res);
           this.formatAllMouth(res.data.data);
         } else {
           this.$message({
@@ -204,7 +202,6 @@ export default {
     bnRegistYearNumHt(data){
         bnRegistYearNumHt(data,this.info).then(res => {
              if (res.data.code == 200) {
-          console.log(res);
           this.formatAllMouth(res.data.data);
         } else {
           this.$message({

@@ -5,11 +5,14 @@
 <script>
 import echarts from "echarts";
 export default {
-  name: "Echarts",
-  props: ["AxisPriceData", "changeFlagEchart"],
+  name: "HomePieEchart",
+  props: ["AxisPriceData","changeFlagEchart"],
   watch: {
     changeFlagEchart: function(newV, oldV) {
-      this.drawPie("mains"); //echart 渲染数据 必须重新走一遍函数
+      
+      this.$nextTick(()=>{
+        this.drawPie("mains"); //echart 渲染数据 必须重新走一遍函数
+      })
     }
   },
   methods: {

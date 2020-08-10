@@ -28,9 +28,9 @@
             <h2>充值{{value.order_amount}}积分</h2>
             <h4 v-if="index == 2" class="recommend">(推荐)</h4>
             <ul>
-              <li>赠送{{value.order_give}}</li>
-              <li>2</li>
-              <li>3</li>
+              <li>赠送{{value.order_give}}积分</li>
+              <li v-if="index == 2 || index == 1">专属客服</li>
+              <li v-if="index == 2">流量扶持</li>
             </ul>
             <h3>￥{{value.order_amount}}元</h3>
             <h5 style="height:84px"></h5>
@@ -61,13 +61,11 @@ export default {
         for (let key in this.moneyList) {
           this.$set(this.moneyList[key], "flag", false);
         }
-        // console.log(res)
       }
     });
   },
   methods: {
     click(amount, key) {
-      // console.log(amount,key)
       this.tp = key;
       for (let key in this.moneyList) {
         this.moneyList[key].flag = false;

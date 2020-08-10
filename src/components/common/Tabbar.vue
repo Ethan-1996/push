@@ -1,5 +1,5 @@
 <template>
-  <div class="tabbar">
+  <div class="tabbar fontTab">
       <el-row class="tac">
         <el-col :span="24">
             <el-menu
@@ -14,7 +14,7 @@
                         <span>商品信息</span>
                     </template> -->
                     <el-menu-item-group>
-                        <el-menu-item index="/">
+                        <el-menu-item index="/Home">
                             <img src="../../assets/images/homeicon.png" alt="" class="icon">
                             首页
                         </el-menu-item>
@@ -86,6 +86,11 @@ export default {
 }
 </script>
 <style lang="scss">
+.fontTab{
+    .el-menu-item.is-active {
+   background-color: #3991e9 !important;
+}
+}
 .tac{
     position: sticky;
     top: 10px;
@@ -99,9 +104,7 @@ export default {
 .el-menu{
     overflow: hidden;
 }
-.el-menu-item.is-active {
-   background-color: #3991e9 !important;
-}
+
 </style>
 <style lang="scss" scoped>
     .tabbar{

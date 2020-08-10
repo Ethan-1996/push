@@ -181,7 +181,6 @@ export default {
       //type 1 是按照销量计算
       bnRegistMonthNumHtOfAd(data, this.info).then(res => {
         if (res.data.code == 200) {
-          console.log(res);
           this.format(res.data.data);
         } else {
           this.$message({
@@ -196,7 +195,6 @@ export default {
     bnRegistYearNumHtOfAd(data) {
       bnRegistYearNumHtOfAd(data, this.info).then(res => {
         if (res.data.code == 200) {
-          console.log(res);
           this.format(res.data.data);
         } else {
           this.$message({

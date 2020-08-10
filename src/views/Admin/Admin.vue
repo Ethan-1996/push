@@ -23,7 +23,6 @@ import getInfo from '@/utils/getAdminInfo.js'
 import PageTop from "@/components/Admin/common/Top.vue"
 import WebHeader from "@/components/common/WebHeader.vue"
 import Tabbar from "@/components/Admin/common/AdminTabbar.vue"
-// import SettingShopsContent from "@/components/Admin/Setting/SettingShops/SettingShopsContent.vue"
 import Footer from "@/components/common/Footer.vue"
 export default {
   name:"Admin",

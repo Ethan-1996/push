@@ -189,14 +189,12 @@ export default {
     getCatLeafNameList(data, type) {
       getCatLeafNameList(data, this.info).then((res) => {
         if (res.data.code == 200) {
-          console.log(res);
           this.tableData = res.data.data.data;
           this.total = res.data.data.total;
           if (type == 1) {
             for (let i = 0; i < this.tableData.length; i++) {
               if (this.tableData[i].id == this.id) {
                 this.sonListInfo = this.tableData[i].name_to_son;
-                console.log(this.tableData[i].name_to_son);
               }
             }
           }

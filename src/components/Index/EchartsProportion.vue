@@ -1,6 +1,9 @@
 <template>
   <!--为echarts准备一个具备大小的容器dom-->
-  <div id="mainProportion"></div>
+  <div class="box" style="display:inline-block">
+    <div id="mainProportion"></div>
+    <p style="text-align:center">本品所在类目所有方案占比</p>
+  </div>
 </template>
 <script>
 import echarts from "echarts";

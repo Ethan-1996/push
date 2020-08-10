@@ -7,6 +7,12 @@ Vue.use(VueRouter)
     {
       path: '/',       //首页 
       name: 'Home',
+      component: () => import('../views/WebIndex/WebIndex.vue'),
+      
+    },
+    {
+      path: '/Home',       //功能首页 
+      name: 'Home',
       component: () => import('../views/Home/Home.vue'),
       meta:{
         keepAlive:true

@@ -80,7 +80,6 @@ export default {
     customerSource(data) {
       customerSource(data, this.info).then(res => {
         if (res.data.code == 200) {
-          console.log(res);
           this.tableData = res.data.data.data;
           this.total = res.data.data.total;
         } else {
@@ -120,7 +119,6 @@ export default {
       this.customerSource(data);
     },
     handleClick(tab, event) {
-      //console.log(tab, event);
       let data = {
         type: tab.name,
         page: 1,

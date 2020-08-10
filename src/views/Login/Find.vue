@@ -1,8 +1,10 @@
 <template>
   <div class="Register">
       <div class="info">
-        <p class="heng"></p>
-        <p class="logtext">找回</p>
+       
+        <img src="../../assets/images/indexLogo.png" alt="" style="margin-bottom:20px">
+         <!-- <p class="heng"></p> -->
+        <!-- <p class="logtext">找回</p> -->
             <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="0px" @submit.native.prevent>
                 <el-form-item label="" prop="nick">
                     <el-input v-model="ruleForm.nick" autocomplete="off" placeholder="请输入店铺名" prefix-icon="el-icon-postcard"></el-input>
@@ -70,10 +72,9 @@ export default {
     },
     methods:{
         toindex(){
-            this.$router.push("/")
+            this.$router.push("/Login")
         },
         submitUpload() {
-            console.log()
             this.$refs.upload.submit();
         },
         handleExceed(files, fileList) {
@@ -87,7 +88,6 @@ export default {
                     type: 'success'
                 });
             }else{
-                console.log(res)
                 this.$message({   
                     showClose: true,
                     message: res.msg,

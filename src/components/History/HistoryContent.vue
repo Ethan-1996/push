@@ -10,13 +10,6 @@
                 <el-link @click="getGoodsList(3,1)" :underline="false" :type="endType">已结束({{endNum}})</el-link>
             </div>
             <div class="search">
-                <!-- <el-autocomplete
-                    v-model="searchInfo"
-                    :fetch-suggestions="querySearchAsync"
-                    placeholder="请输入内容"
-                    @select="handleSelect"
-                    suffix-icon="el-icon-search"
-                ></el-autocomplete> -->
                 <el-input placeholder="请输入标题/关键词" v-model="searchInfo" size="small" style="margin-top:10px">
                     <el-button slot="append" @click="search">
                         <img src="../../assets/images/search2.png" alt="">
@@ -161,7 +154,6 @@ export default {
         },
         getStateNum(){    //获取 各个状态 数量的 函数 传给子组件 
             getStateNum(this.info).then(res => {
-                console.log(res,"whwhwhwhhwhwhwhwhwh")
                 if(res.data.code == 200){
                     this.inlineNum = res.data.data.conduct  //正在进行数量
                     this.fuNum = res.data.data.foresee     //预告数量
@@ -186,18 +178,10 @@ export default {
                 //循环添加一个 查看数量flag
                 
                 for(let i = 0;i < this.listInfo.length;i++){
-                    //  let element = []
                     //$set 触发试图更新
                     this.$set(this.listInfo[i],"checkNumFlag",true);
                    
-                   // 这便是 平台类型的  重新排列数组
-                    // for (let index = 0; index < this.listInfo[i].state_to_platform_web.length; index++) {
-                    //     element.push(this.listInfo[i].state_to_platform_web[index].id) 
-                    // }
-                    // this.$set(this.listInfo[i],"platformList",element);
-                    // element = []
                 }
-                console.log(this.listInfo,"infofffffofofofofofofofofofo")
                 this.total = res.data.data.total
             })
 

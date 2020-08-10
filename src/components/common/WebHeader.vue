@@ -1,7 +1,7 @@
 <template>
     <div class="webHeaderBox">
         <div class="webHeader">
-            <img src="../../assets/images/logo.png" alt="">
+            <img src="../../assets/images/logo.png" style="cursor: pointer;" @click="toPath('/')">
             <img src="../../assets/images/afterLogo.png" alt="" style="margin-left:20px">
         </div>
     </div>
@@ -10,6 +10,11 @@
 <script>
 export default {
     name:"WebHeader",
+    methods:{
+        toPath(path){
+            this.$router.push(path);
+        }
+    }
 }
 </script>
 
@@ -24,6 +29,7 @@ export default {
             margin: auto;
             font-size: 36px;
             color: #fff;
+           
             line-height: 102px;
         }
     }

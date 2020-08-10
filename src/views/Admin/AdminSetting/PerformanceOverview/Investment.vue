@@ -94,22 +94,9 @@ export default {
   created() {
     getAdminInfo(this.info);
 
-    // achieveMentMonth(this.info).then(res => {
-    //   if (res.data.code == 200) {
-    //     //console.log(res);
-    //     this.formLabelAlign = res.data.data;
-    //   } else {
-    //     this.$message({
-    //       showClose: true,
-    //       message: res.data.msg,
-    //       type: "error"
-    //     });
-    //   }
-    // });
   },
   methods: {
     getData() {
-      console.log(this.id);
       if (this.id == "") {
         return false;
       }
@@ -179,7 +166,6 @@ export default {
         }
       achieveMentMonthHt({ id:this.id,year: this.year }, this.info).then(res => {
         if (res.data.code == 200) {
-          console.log(res);
           this.format(res.data.data);
         } else {
           this.$message({

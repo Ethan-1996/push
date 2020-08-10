@@ -38,9 +38,16 @@
           <button @click="toPath('MoneyList')">立即充值</button>
         </div>
       </div>
-      <div class="right"  v-loading="loading" element-loading-text="统计中..." >
-        <p class="bestGood">最佳商品占比分析</p>
-        <HomePieEchart :AxisPriceData="AxisPriceData" :changeFlagEchart="changeFlagEchart"/>
+      <div class="right">
+        <!-- <p class="bestGood">最佳商品占比分析</p>
+        <HomePieEchart :AxisPriceData="AxisPriceData" :changeFlagEchart="changeFlagEchart"/> -->
+        <div class="snow">
+          <img src="../../assets/images/snow.png" alt="">
+        </div>
+        <div class="text">
+          <p>亲爱的<span style="color:red">{{dayInfo.nick}}</span>，您已入驻小淘 <span style="color:red">{{dayInfo.continue_time}}</span>天</p>
+          <p>通过小淘累计推广<span style="color:red">{{dayInfo.total_receive_num}}</span>张券</p>
+        </div>
       </div>
     </div>
     <div class="info">
@@ -125,9 +132,14 @@ export default {
       yAxisData: [0, 0, 0, 0, 0, 0], //传值数据  y轴数据1
       yAxisData2: [0, 0, 0, 0, 0, 0], //传值数据  y轴数据2
       xAxisData: ["xx", "xx", "xx", "xx", "xx"], //传值数据  x轴数据
-      AxisPriceData:[],
-      changeFlagEchart:1,
-      loading:true
+      //AxisPriceData:[],
+      //changeFlagEchart:1,
+      //loading:true
+      dayInfo:{
+        continue_time:"",
+        total_receive_num:"",
+        nick:""
+      }
     };
   },
   created() {
@@ -150,29 +162,18 @@ export default {
           this.shopName = res.data.data.nick;
           this.integral = res.data.data.integral;
 
-          //console.log(this.formLabelAlign.nick)
         }
       });
 
-      // 获取首页  饼图数据 
+      // 获取首页  时间信息
       index(this.info).then(res => {
         if (res.data.code == 200) {
-          this.formatEchartsProInfo(res.data.data)
-          this.loading = false
-          // console.log(res)
-        }
+          this.dayInfo = res.data.data
+}
       })
     }
   },
   methods: {
-     //整理 按照类目 效果展示
-        formatEchartsProInfo(proportion){
-            this.AxisPriceData = []
-            for(var i = 0;i < proportion.length;i++){
-                this.AxisPriceData.push({name:proportion[i].price + ' | ' + proportion[i].commission,value:proportion[i].proportion})
-            }
-            this.changeFlagEchart += 1
-        },
     toHis(type) {
       this.$router.push({ path: "/History", query: { type: type } });
     },
@@ -207,7 +208,6 @@ export default {
     getStateNum() {
       //获取 各个状态 数量的 函数 传给子组件
       getStateNum(this.info).then((res) => {
-        // console.log(res, "whwhwhwhhwhwhwhwhwh");
         if (res.data.code == 200) {
           this.inlineNum = res.data.data.conduct; //正在进行数量
           this.fuNum = res.data.data.foresee; //预告数量
@@ -222,7 +222,6 @@ export default {
         if (res.data.code == 200) {
           this.tableData = res.data.data.data;
           this.tableData = this.tableData.splice(0, 3);
-          // console.log(this.tableData);
         } else {
           this.$message({
             type: "error",
@@ -328,14 +327,25 @@ export default {
       flex: 1;
       background: #fff;
       position: relative;
-      .bestGood{
-        font-size: 16px;
-        font-weight: 800;
-        line-height: 24px;
-        position: absolute;
-        top: 30px;
-        left: 30px;
-        width: 72px;
+      display: flex;
+      justify-content: space-between;
+      .snow{
+        margin-top: 10px;
+        margin-left: 10px;
+      }
+      .text{
+        background: url('../../assets/images/text.png');
+        background-size: cover;
+        width: 282px;
+        height: 112px;
+        margin-top: 27px;
+        margin-right: 40px;
+        padding-top: 18px;
+        p{
+          line-height: 20px;
+          width: 160px;
+          margin: auto;
+        }
       }
     }
   }

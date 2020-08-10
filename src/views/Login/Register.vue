@@ -1,16 +1,37 @@
 <template>
   <div class="Register">
       <div class="info">
-        <p class="heng"></p>
+        <!-- <p class="heng"></p>
         <p class="logtext" v-if="pageType">找回密码</p>
-        <p class="logtext" v-else>注册</p>
+        <p class="logtext" v-else>注册</p> -->
+        <img src="../../assets/images/indexLogo.png" alt="" style="margin-bottom:20px">
             <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="0px" @submit.native.prevent>
-                <el-form-item label="" prop="nick">
-                    <el-input v-model="ruleForm.nick" autocomplete="off" placeholder="请输入店铺名" prefix-icon="el-icon-postcard"></el-input>
-                </el-form-item>
 
                 <el-form-item label="" prop="phone">
-                    <el-input v-model="ruleForm.phone" autocomplete="off" placeholder="请输入手机号码" prefix-icon="el-icon-postcard"></el-input>
+                    <el-input v-model="ruleForm.phone" autocomplete="off" placeholder="请输入手机号码" prefix-icon="el-icon-postcard" v-if="!pageType"></el-input>
+                    <el-input v-model="ruleForm.phone" autocomplete="off" placeholder="请输入手机号码" prefix-icon="el-icon-postcard" v-if="pageType" @change.native="getphone()"></el-input>
+                </el-form-item>
+
+
+                <el-form-item label="" prop="nick" v-if="!pageType">
+                    <el-input v-model="ruleForm.nick" autocomplete="off" placeholder="请输入店铺名" prefix-icon="el-icon-postcard"></el-input>
+                    <p style="color:red;line-height:20px">注意：请填写淘宝店铺名称！</p>
+                </el-form-item>
+
+                <!-- 忘记密码时 是选择 店铺名字 -->
+                <el-form-item label="" prop="nick" v-if="pageType">    
+                    <el-select v-model="ruleForm.nick" placeholder="请选择店铺">
+                        <template slot="prefix">
+                            <i class="el-icon-postcard" style="line-height: 64px;font-size: 22px;margin-left: 2px;"></i>
+                        </template>
+                        <el-option
+                        v-for="item in shopList"
+                        :key="item"
+                        :label="item"
+                        :value="item">
+                        <span style="float: left">{{ item }}</span>
+                        </el-option>
+                    </el-select>
                 </el-form-item>
 
                 <el-form-item label="" prop="password">
@@ -57,12 +78,13 @@
 </template>
 
 <script>
-import {sendCode,addUser,forgetPass} from '@/api/api.js';
+import {sendCode,addUser,forgetPass,getNickByPhe} from '@/api/api.js';
 import axios from 'axios';
 export default {
     name:"Register",
     data(){
         return {
+            shopList:[],
             timeShow:true, //倒计时显示控制标识
             count:"",       //计时
             pageType:"",    //本页面类型  忘记密码还是注册
@@ -103,9 +125,21 @@ export default {
             this.pageType = false
         }
        this.getPicCode()  //获取图片验证码
-        console.log(this.$route.query)
     },
     methods:{
+        getphone(){
+            getNickByPhe({phone:this.ruleForm.phone}).then(res => {
+                if (res.data.code == 200) {
+                    this.shopList = res.data.data
+                }else{
+                    this.$message({   
+                        showClose: true,
+                        message: res.data.msg,
+                        type: 'error'
+                    });
+                }
+            })
+        },
         countDown(){   //倒计时
             const TIME_COUNT = 60;
             if (!this.timer) {
@@ -161,7 +195,6 @@ export default {
                         this.getPicCode()
                         this.ruleForm.picCode = ""  //验证不成功后需要重新换取图片验证码
                     }
-                    //console.log("resssssssss",res)
                 }).catch(error => {
                     console.log(error)
                 })
@@ -186,7 +219,6 @@ export default {
                         id:this.$route.query.id?this.$route.query.id:-1,
                     }
                     addUser(data).then(res => {
-                        // console.log("ressssssssssss",res)
                         if(res.data.code == 200){
                             this.$message({  //注册成功自动跳转
                                 showClose: true,
@@ -224,7 +256,6 @@ export default {
                          nick:this.ruleForm.nick,
                     }
                     forgetPass(data).then(res => {
-                        // console.log("ressssssssssss",res)
                         if(res.data.code == 200){
                             this.$message({  //注册成功自动跳转
                                 showClose: true,

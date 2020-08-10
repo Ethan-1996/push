@@ -107,7 +107,6 @@ export default {
 
      
       getAllRoleTree(this.info).then(res => {
-        console.log("hahahah",res)
         if(res.data.code == 200){
           this.data = res.data.data
         }
@@ -151,7 +150,6 @@ export default {
       // 修改 的函数  出现 对话框  渲染数据
       edit(data) {
         this.dialogFormVisible = true
-        console.log(data)
         this.form.describe = data.describe
         this.form.id = data.id
         this.form.icon = data.icon

@@ -116,7 +116,6 @@ export default {
     myCalledPhones(page) {
       myCalledPhones({page},this.info).then(res => {
         if (res.data.code == 200) {
-          console.log(res);
           this.tableData = res.data.data.data;
           this.total = res.data.data.total
         } else {
@@ -132,7 +131,6 @@ export default {
       this.title = title
       getOnePhoneLog({ al_id: id }, this.info).then(res => {
         if (res.data.code == 200) {
-          console.log(res);
           this.activities = res.data.data;
         } else {
           this.$message({

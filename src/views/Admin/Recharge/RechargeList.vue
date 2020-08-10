@@ -83,7 +83,6 @@ export default {
     getOrderListAd(data) {
       getOrderListAd(data, this.info).then(res => {
         if (res.data.code == 200) {
-          console.log(res);
           this.tableData = res.data.data.data;
           this.total = res.data.data.total;
         } else {
@@ -123,7 +122,6 @@ export default {
       this.getOrderListAd(data);
     },
     handleClick(tab, event) {
-      //console.log(tab, event);
       let data = {
         pay_status: tab.name,
         page: 1,

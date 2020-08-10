@@ -115,7 +115,6 @@ export default {
       //type 1 是按照销量计算
       businessEffect({ id, type: 1 }, this.info).then(res => {
         if (res.data.code == 200) {
-          console.log(res);
           this.format(res.data.data.day);
         } else {
           this.$message({
@@ -146,7 +145,6 @@ export default {
     getBusinessList(data) {
       getBusinessList(data, this.info).then(res => {
         if (res.data.code == 200) {
-          //console.log(res)
           this.tableData = res.data.data.data;
           this.total = res.data.data.total;
         } else {

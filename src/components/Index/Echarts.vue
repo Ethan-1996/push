@@ -1,6 +1,10 @@
 <template>
   <!--为echarts准备一个具备大小的容器dom-->
-  <div id="maina"></div>
+  <div class="box" style="display:inline-block">
+    <div id="maina"></div>
+    <p style="text-align:center">本品历史方案占比</p>
+  </div>
+  
 </template>
 <script>
 import echarts from "echarts";

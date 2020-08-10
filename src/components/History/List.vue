@@ -1,14 +1,5 @@
 <template>
   <div class="hisList">
-    <!-- <div class="explanation">
-    Tips:
-    <div v-for="item in platformData " :key="item.id" style="display:inline">
-      {{item.platform}}
-      <el-tooltip class="item" effect="dark" :content="item.descri" placement="top">
-      <p>?</p>
-    </el-tooltip>
-    </div>
-    </div>-->
     <el-table :data="listInfo" style="width: 1140px;margin:auto" border>
       <el-table-column label="提交时间" width="100">
         <template slot-scope="scope">
@@ -172,7 +163,6 @@ export default {
         coupon_activity_id,
       };
       getCoupon(data, this.info).then((res) => {
-        console.log(res, "resgsgsgsggsgggggggggggggggg");
         if (res.data.code == 404) {
           //  404 表示  过期了  就  显示 list 中的 数据
           for (let i = 0; i < this.listInfo.length; i++) {
@@ -200,7 +190,6 @@ export default {
         id,
       };
       editLower(data, this.info).then((res) => {
-        // console.log(res,"kkkkkkkkkkkkkkkkkkk")
         if (res.data.code == 200) {
           for (let i = 0; i < this.listInfo.length; i++) {
             //更新 成功后 更改试图
@@ -268,13 +257,11 @@ export default {
         goods_add_remark: this.form.remark,
       };
       editRemark(data, this.info).then((res) => {
-        console.log(res, "resdsdsdsdsdsdsdsd");
         if (res.data.code == 200) {
           for (let i = 0; i < this.listInfo.length; i++) {
             //更新 成功后 更改试图
             if (this.remarkId == this.listInfo[i].id) {
               this.listInfo[i].goods_add_remark = data.goods_add_remark;
-              console.log(data.goods_add_remark, "data.goods_add_remark");
             }
           }
 

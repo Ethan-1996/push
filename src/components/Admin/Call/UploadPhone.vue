@@ -52,7 +52,6 @@ export default {
       },
       // 上传文件前的 校验
       beforeAvatarUpload(file) {
-         console.log(file)
             var testmsg=file.name.substring(file.name.lastIndexOf('.')+1)
             const extension = testmsg === 'xls'
             const extension2 = testmsg === 'xlsx'

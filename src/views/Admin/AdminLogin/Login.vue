@@ -135,7 +135,6 @@ export default {
             pic_code: this.ruleForm.picCode,
           };
           checkUser(data).then((res) => {
-            console.log("resssssssssssslogin", res);
             if (res.data.code == 200) {
               this.$confirm(
                 "您已成功登录，是否保存用户信息用于下次登录?",
@@ -157,7 +156,6 @@ export default {
                     "role_list",
                     JSON.stringify(res.data.data.role_list)
                   );
-                  // console.log(JSON.stringify(res.data.data.role_list));
                   this.$message({
                     type: "success",
                     message: "已保存您的信息!",
@@ -209,7 +207,6 @@ export default {
             }
           });
         } else {
-          console.log("error submit!!");
           return false;
         }
       });

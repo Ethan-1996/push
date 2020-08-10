@@ -66,7 +66,6 @@ export default {
 
     achieveMentMonth(this.info).then(res => {
       if (res.data.code == 200) {
-        //console.log(res);
         this.formLabelAlign = res.data.data;
       } else {
         this.$message({
@@ -94,7 +93,6 @@ export default {
     getYearData() {
       achieveMentHistory({ year: this.year }, this.info).then(res => {
         if (res.data.code == 200) {
-          console.log(res);
           this.format(res.data.data);
         } else {
           this.$message({
