@@ -88,7 +88,7 @@
         </el-dialog>
         <!-- 分割线 -->
         <div class="divider divider2" style="margin-top:0">
-            <el-divider content-position="center">竞品历史方案销额</el-divider>
+            <el-divider content-position="center">行业历史方案单日销额</el-divider>
         </div>
         <!-- 方案部分 -->
         <Program :extensionInfo="extensionInfo" />

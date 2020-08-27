@@ -4,10 +4,10 @@
         <!-- 商品状态 -->
         <div class="goodsState">
             <div class="states">
-                <el-link @click="getGoodsList(2,1)" :underline="false" :type="inlineType">当前在线商品({{inlineNum}})</el-link>
-                <el-link @click="getGoodsList(1,1)" :underline="false" :type="fuType">预告({{fuNum}})</el-link>
-                <el-link @click="getGoodsList(4,1)" :underline="false" :type="noType">失效商品({{noNum}})</el-link>
-                <el-link @click="getGoodsList(3,1)" :underline="false" :type="endType">已结束({{endNum}})</el-link>
+                <el-link @click="getGoodsList('2',1)" :underline="false" :type="inlineType">当前在线商品({{inlineNum}})</el-link>
+                <el-link @click="getGoodsList('1',1)" :underline="false" :type="fuType">预告({{fuNum}})</el-link>
+                <el-link @click="getGoodsList('4',1)" :underline="false" :type="noType">失效商品({{noNum}})</el-link>
+                <el-link @click="getGoodsList('3',1)" :underline="false" :type="endType">已结束({{endNum}})</el-link>
             </div>
             <div class="search">
                 <el-input placeholder="请输入标题/关键词" v-model="searchInfo" size="small" style="margin-top:10px">
@@ -55,8 +55,8 @@ export default {
         }else{
             //获取数量
             
-
             if(this.$route.query.type){
+                
                 this.setState(this.$route.query.type)
                 this.getStateNum()
                 this.getGoodsList(this.$route.query.type,1)
@@ -101,26 +101,25 @@ export default {
     methods:{
         setState(state){
             switch (state) {
-                case 1:
+                case "1":
                     this.inlineType = "info"
                     this.fuType = "primary"
                     this.noType = "info"
                     this.endType = "info"
                     break;
-                case 2:
+                case "2":
                     this.inlineType = "primary"
                     this.fuType = "info"
                     this.noType = "info"
                     this.endType = "info"
                     break;
-                case 3:
+                case "3":
                     this.inlineType = "info"
                     this.fuType = "info"
                     this.noType = "info"
                     this.endType = "primary"
                     break;
-                case 4:
-                    
+                case "4":
                     this.inlineType = "info"
                     this.fuType = "info"
                     this.noType = "primary"

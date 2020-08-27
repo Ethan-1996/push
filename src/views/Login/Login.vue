@@ -99,7 +99,7 @@ export default {
             this.$router.push("/Register")
         },
         toindex(){
-            this.$router.push("/")
+            this.$router.push("/Home")
         },
         submitForm(formName) {
             this.$refs[formName].validate((valid) => {

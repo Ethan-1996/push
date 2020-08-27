@@ -1,10 +1,9 @@
 import request from '@/utils/request'
 
 
-const Header = "http://www.taoliutui.com"
+const Header = "https://www.taoliutui.com"
 
 // const Header = "/api"
-
 
 const getNickByPheUrl= Header + '/index/Login/getNickByPhe'; //通过手机号获取店铺名字
 export function getNickByPhe(query) {

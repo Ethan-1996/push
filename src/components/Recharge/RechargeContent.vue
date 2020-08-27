@@ -120,7 +120,7 @@ export default {
       .item {
         // transition: 80ms;
         position: relative;
-        width: 190px;
+        width: 200px;
         height: 280px;
         color: #fff;
         padding: 25px 20px;

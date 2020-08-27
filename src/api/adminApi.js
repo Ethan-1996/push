@@ -1,7 +1,7 @@
 import request from '@/utils/request'
 
 
-const Header = "http://www.taoliutui.com"
+const Header = "https://www.taoliutui.com"
 
 // const Header = "/api"
 

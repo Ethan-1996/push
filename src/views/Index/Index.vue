@@ -40,6 +40,13 @@ export default {
     }
 
   },
+  activated(){
+    getInfo(this.info)
+
+    if(!getInfo(this.info)){
+      return false
+    }
+  },
   data(){
     return {
       info:{}

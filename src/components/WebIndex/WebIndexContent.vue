@@ -1,7 +1,7 @@
 <template>
   <div class="webIndexCon">
     <!-- logo &nav 部分 -->
-    <div class="logoTop">
+    <!-- <div class="logoTop">
       <div class="logo">
         <img src="../../assets/images/indexLogo.png" alt />
         <span class="shu"></span>
@@ -13,7 +13,8 @@
           <li v-for="item in navs" :key="item.id" @click="toPath(item.route)">{{item.text}}</li>
         </ul>
       </div>
-    </div>
+    </div>-->
+    <WebIndexHeader :info="info" />
 
     <!--  banner -->
 
@@ -28,46 +29,105 @@
     <!-- 我们的优势 -->
     <div class="advantageBox">
       <div class="advantage">
-        <p class="comingSoonTitle advantageTitle">我们的优势</p>
-        <p class="titleBottom"></p>
-
-        <div class="advantageCon">
-          <div class="comingItem">
-            <img src="../../assets/images/data.png" alt />
-            <h3>数据支持</h3>
-            <p>五年行业沉淀，上亿条产品数据支持为客户提供最全面的淘客数据分析工具</p>
-            <p>更权威的数据服务</p>
-          </div>
-          <div class="comingItem">
-            <img src="../../assets/images/users.png" alt />
-            <h3>海量用户</h3>
-            <p>平台自由每日百万级流量，合作渠道覆盖全网各大流量源头，分发平台覆盖流量千万级</p>
-            <p>更庞大的流量支持</p>
-          </div>
-          <div class="comingItem">
-            <img src="../../assets/images/speed.png" alt />
-            <h3>高效分发</h3>
-            <p>最专业的技术解决方案，完善解决流量分发症结，高效接口调用与自动化技术，实现更高效的流量分发</p>
-            <p>更完善的技术方案</p>
-            <p></p>
-          </div>
-          <div class="comingItem">
-            <img src="../../assets/images/money.png" alt />
-            <h3>标准化收费</h3>
-            <p>通过集中式流量采买与深度合作分发降低套客流量成本，然后以标准化价格进行分发，解决行业流量收费昂贵症结</p>
-            <p>更标准的收费方式</p>
-            <p></p>
-          </div>
+        <div class="advantageLeft">
+          <h2 style="color:#d34b3d;margin-left:30px">商家痛点分析</h2>
+          <ul>
+            <li>
+              <div class="text">
+                <h3>行业数据</h3>
+                <p>行业及竞争数据缺失，商家不能及时 得到行业竞品的方案及销量数据，导致推广被动。</p>
+                <p>行业数据缺失</p>
+              </div>
+              <div class="imgBox">
+                <img src="../../assets/images/list/datared.png" alt />
+              </div>
+            </li>
+            <li>
+              <div class="text">
+                <h3>沟通成本</h3>
+                <p>无实力团队居多，线上推广商家无论 何种方式成交均支付服务费，商家筛选实力淘客成本变高。</p>
+                <p>时间成本增加</p>
+              </div>
+              <div class="imgBox">
+                <img src="../../assets/images/list/usersred.png" alt />
+              </div>
+            </li>
+            <li>
+              <div class="text">
+                <h3>效果不可控</h3>
+                <p>对于方案一般产品利用CPS付费模式取得客户信任直挂平台、不上渠道，蹭取服务费</p>
+                <p>效果无法掌握</p>
+              </div>
+              <div class="imgBox">
+                <img src="../../assets/images/list/resred.png" alt />
+              </div>
+            </li>
+            <li>
+              <div class="text">
+                <h3>成本高</h3>
+                <p>除佣金优惠券外，商家需额外支付淘客5%-10%服务费，资金压力大。</p>
+                <p>支付成本过高</p>
+              </div>
+              <div class="imgBox">
+                <img src="../../assets/images/list/moneyred.png" alt />
+              </div>
+            </li>
+          </ul>
         </div>
-        <div style="margin:auto;width:240px">
-          <input type="submit" value="前往放单" class="newFnBtn" @click="toPath('Release')" />
+        <div class="advantageRight">
+          <h2 style="color:#214579;margin-right:30px;text-align:right">淘流推的优势</h2>
+          <ul>
+            <li>
+              <div class="imgBox">
+                <img src="../../assets/images/list/data.png" alt />
+              </div>
+              <div class="text">
+                <h3>数据支持</h3>
+                <p>五年行业沉淀，上亿条产品数据支持为客户提供最全面的淘客数据分析工具</p>
+                <p>更权威的数据服务</p>
+              </div>
+            </li>
+            <li>
+              <div class="imgBox">
+                <img src="../../assets/images/list/users.png" alt />
+              </div>
+              <div class="text">
+                <h3>海量用户</h3>
+                <p>平台自由每日百万级流量，合作渠道覆盖全网各大流量源头，分发平台覆盖流量千万级</p>
+                <p>更庞大的流量支持</p>
+              </div>
+            </li>
+            <li>
+              <div class="imgBox">
+                <img src="../../assets/images/list/speed.png" alt />
+              </div>
+              <div class="text">
+                <h3>高效分发</h3>
+                <p>最专业的技术解决方案，完善解决流量分发症结，高效接口调用与自动化技术，实现更高效的流量分发</p>
+                <p>更完善的技术方案</p>
+              </div>
+            </li>
+            <li>
+              <div class="imgBox">
+                <img src="../../assets/images/list/money.png" alt />
+              </div>
+              <div class="text">
+                <h3>标准化收费</h3>
+                <p>通过集中式流量采买与深度合作分发降低淘客流量成本，然后以标准化价格进行分发，解决行业流量收费昂贵症结</p>
+                <p>更标准的收费方式</p>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
+      <div style="margin:40px auto 0;width:240px">
+          <input type="submit" value="前往放单" class="newFnBtn" @click="toPath('Release')" />
+        </div>
     </div>
 
     <!-- 解决方案 -->
     <div class="solveBox" style="max-width:1920px;margin:auto">
-      <img src="../../assets/images/solvebg.png"  />
+      <img src="../../assets/images/solvebg.png" />
       <div class="solve">
         <p class="comingSoonTitle solveTitle">解决方案</p>
         <p class="titleBottom" style="background:#fff"></p>
@@ -76,7 +136,7 @@
             <p>1.通过大数据分析为客户提供最准确的淘流推推广方案建议</p>
             <p>2.结合大数据分析后的方案给客户提供专业的流量分发服务</p>
             <p>3.通过集中流量采买及流量平台深度合作为客户提供标准化收费</p>
-            <div class="solveList">
+            <!-- <div class="solveList">
               <div class="solveItem">
                 <img src="../../assets/images/solveAttention.png" alt />
                 <p>关注列表</p>
@@ -93,7 +153,7 @@
                 <img src="../../assets/images/solveSearch.png" alt />
                 <p>商品搜索</p>
               </div>
-            </div>
+            </div>-->
           </div>
           <div class="solveRight">
             <img src="../../assets/images/woman.png" alt />
@@ -159,35 +219,37 @@
 </template>
 
 <script>
-import Swiper from './Swiper'
+import Swiper from "./Swiper";
+import WebIndexHeader from "../common/WebIndexHeader";
 import getInfo from "@/utils/getInfo.js";
 export default {
   name: "WebIndexContent",
   created() {
     // getInfo(this.info);
-     if(localStorage.getItem('accessToken')){
-        this.info.user_info = localStorage.getItem('accessToken')
-        this.info.user_id = localStorage.getItem('user_id')
-    }else if(sessionStorage.getItem('accessToken')){
-        this.info.user_info = sessionStorage.getItem('accessToken')
-        this.info.user_id = sessionStorage.getItem('user_id')
-    }else{
-        this.info = ""
+    if (localStorage.getItem("accessToken")) {
+      this.info.user_info = localStorage.getItem("accessToken");
+      this.info.user_id = localStorage.getItem("user_id");
+    } else if (sessionStorage.getItem("accessToken")) {
+      this.info.user_info = sessionStorage.getItem("accessToken");
+      this.info.user_id = sessionStorage.getItem("user_id");
+    } else {
+      this.info = "";
     }
   },
-  components:{
-    Swiper
+  components: {
+    Swiper,
+    WebIndexHeader,
   },
   data() {
     return {
       info: {},
-      navs: [
-        { id: 1, text: "首页", route: "/" },
-        { id: 2, text: "推广中心", route: "/Home" },
-        { id: 3, text: "产品分析", route: "/Index" },
-        { id: 4, text: "插件下载", route: "/" },
-        { id: 5, text: "个人中心", route: "/PersonCenter" },
-      ],
+      // navs: [
+      //   { id: 1, text: "首页", route: "/" },
+      //   { id: 2, text: "推广中心", route: "/Home" },
+      //   { id: 3, text: "产品分析", route: "/Index" },
+      //   { id: 4, text: "插件下载", route: "/DownLoadCrx" },
+      //   { id: 5, text: "个人中心", route: "/PersonCenter" },
+      // ],
       banners: [
         { id: 1, url: require("../../assets/images/banner.png") },
         // { id: 2, url: require("../../assets/images/banner.png") },
@@ -269,7 +331,7 @@ export default {
     cursor: pointer;
     margin-top: 40px;
   }
-  .partnerTitle{
+  .partnerTitle {
     margin-top: 170px;
   }
   .logoTop {
@@ -398,53 +460,56 @@ export default {
   }
   // 我们的优势
   .advantageBox {
-    height: 800px;
+    // height: 800px;
     background: url("../../assets/images/advantagebg.png");
     background-size: cover;
+    padding-bottom: 40px;
     .advantage {
-      padding-top: 130px;
-      .advantageTitle {
-        margin-top: 0;
-      }
-      .advantageCon {
-        display: flex;
-        justify-content: space-between;
-        width: 1400px;
-        margin: auto;
-        margin-top: 45px;
-        .comingItem {
-          width: 24%;
-          text-align: center;
-          border-radius: 4px;
-          border: 1px solid #ccc;
-          box-shadow: 3px 6px 10px #ccc;
-          background: #fff;
-          position: relative;
-          padding-bottom: 90px;
-          img {
-            margin-top: 48px;
+      width: 1000px;
+      margin: auto;
+      padding: 85px 100px 0px;
+      display: flex;
+      justify-content: space-between;
+      .advantageLeft,
+      .advantageRight {
+        ul {
+          li {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 90px;
+            height: 154px;
+            .imgBox{
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              margin: 0 80px;
+            }
+            .text {
+              text-align: center;
+              
+              h3 {
+                font-size: 24px;
+                color: #000;
+              }
+              p {
+                font-size: 12px;
+                color: #666;
+                margin: auto;
+                margin-top: 20px;
+                line-height: 26px;
+                width: 220px;
+              }
+              p:nth-of-type(2) {
+                color: #000;
+                font-size: 16px;
+                margin-top: 16px;
+              }
+            }
           }
-          h3 {
-            margin-top: 45px;
-            font-size: 20px;
-            color: #000;
-            margin-bottom: 40px;
-          }
-          p {
-            font-size: 16px;
-            color: #666;
-            width: 210px;
-            margin: auto;
-            line-height: 26px;
-          }
-          p:nth-of-type(2) {
-            color: #000;
-            position: absolute;
-            bottom: 50px;
-            left: 0;
-            right: 0;
-            margin: auto;
-          }
+        }
+        h2 {
+          font-size: 50px;
+          margin-bottom: 100px;
         }
       }
     }
@@ -477,8 +542,8 @@ export default {
         .solveLeft {
           width: 600px;
           p {
-            margin-top: 50px;
-            font-size: 16px;
+            margin-top: 75px;
+            font-size: 20px;
           }
           .solveList {
             display: flex;

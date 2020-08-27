@@ -1,6 +1,6 @@
 <template>
   <div class="showContent">
-    <div class="name">首页</div>
+    <!-- <div class="name">首页</div> -->
     <!-- 个商品类型 -->
     <div class="typeOfGoods">
       <ul>

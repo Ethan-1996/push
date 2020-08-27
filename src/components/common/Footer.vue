@@ -14,7 +14,7 @@
               </div>
           </div> -->
           <div class="topLeftImg">
-              <img src="../../assets/images/logoFoot.png" alt="">
+              <img src="../../assets/images/indexLogo.png" alt="">
           </div>
           <div class="topCenter">
               <ul>

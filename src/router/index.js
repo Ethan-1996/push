@@ -6,7 +6,7 @@ Vue.use(VueRouter)
   const routes = [
     {
       path: '/',       //首页 
-      name: 'Home',
+      name: 'WebIndex',
       component: () => import('../views/WebIndex/WebIndex.vue'),
       
     },
@@ -14,9 +14,7 @@ Vue.use(VueRouter)
       path: '/Home',       //功能首页 
       name: 'Home',
       component: () => import('../views/Home/Home.vue'),
-      meta:{
-        keepAlive:true
-      }
+      
     },
     {
       path: '/Index',       // 产品分析页面
@@ -77,6 +75,11 @@ Vue.use(VueRouter)
       path: '/Attention',
       name: 'Attention',
       component: () => import('../views/Attention/Attention.vue')
+    },
+    {                    //我的关注
+      path: '/DownLoadCrx',
+      name: 'DownLoadCrx',
+      component: () => import('../views/DownLoadCrx/DownLoadCrx.vue')
     },
     // {                    //充值中心
     //   path: '/Recharge',

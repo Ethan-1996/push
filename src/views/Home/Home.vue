@@ -28,7 +28,7 @@ import Tabbar from "@/components/common/Tabbar.vue"
 import HomeContent from "@/components/Home/HomeContent.vue"
 import Footer from "@/components/common/Footer.vue"
 export default {
-  name:"Index",
+  name:"Home",
   components:{
     PageTop,WebHeader,Tabbar,Footer,HomeContent
   },

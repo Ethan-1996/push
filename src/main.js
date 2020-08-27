@@ -17,10 +17,21 @@ Vue.prototype.$md5 = md5;
 
 
 
-const Header = "http://www.taoliutui.com"
+import Router from 'vue-router'
+
+const originalPush = Router.prototype.push
+Router.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
+
+
+
+const Header = "https://www.taoliutui.com"
 
 // const Header = "/api"
 Vue.prototype.$header = Header;
+
+
 
 Vue.use(ElementUI);
 
